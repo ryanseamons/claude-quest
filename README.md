@@ -1,90 +1,121 @@
-# Code Quest: Adventures with AI
+# Claude Quest: Adventures with AI
 
-## Welcome, Young Coder!
+An interactive course that teaches kids (ages 10+) how to use AI tools to build real projects. No prior coding experience needed.
 
-You're about to embark on an epic adventure into the world of coding with AI! By the end of this quest, you'll be able to talk to computers, build cool projects, and have your very own AI coding assistant helping you along the way.
+**Live Site:** [claudequest.ryanseamons.com](https://claudequest.ryanseamons.com)
+
+---
+
+## The Goal
+
+Give kids the basic tools that unlock their ability to **build anything they can imagine**. Instead of teaching programming syntax, this course teaches kids how to:
+
+- Talk to AI assistants effectively (prompting)
+- Use the terminal (the "secret" way pros control computers)
+- Turn ideas into working web apps
+- Iterate and improve their creations
+
+By the end, kids will have built multiple interactive projects and have the confidence to create more on their own.
 
 ---
 
 ## What You'll Learn
 
-- **Level 1:** Terminal Basics - Learn to speak the computer's language
-- **Level 2:** Meet Claude Code - Your AI coding companion
-- **Level 3:** Your First Commands - Making things happen
-- **Level 4:** Build Something Cool - Mini projects that actually do stuff!
-- **Level 5:** Boss Level - Create your own project from scratch
+| Level | Name | What You'll Do |
+|-------|------|----------------|
+| 1 | **Terminal Basics** | Learn to control your computer with text commands |
+| 2 | **Meet Claude** | Install Claude Code and set up your AI coding partner |
+| 3 | **Your First Prompts** | Build 6 web apps by describing what you want |
+| 4 | **Level Up** | Make your projects better with styling, sounds, and features |
+| 5 | **Boss Level** | Design and build your dream project from scratch |
 
 ---
 
-## Your Quest Map
+## How It Works
 
-```
-START
-  |
-  v
-[Terminal Basics] --> Unlock: Command Power!
-  |
-  v
-[Claude Code Intro] --> Unlock: AI Assistant!
-  |
-  v
-[First Projects] --> Unlock: Creator Badge!
-  |
-  v
-[Build Your Own] --> Unlock: Code Wizard Status!
-  |
-  v
-VICTORY!
+This is a **gamified, browser-based course** with:
+
+- XP and leveling system to track progress
+- Interactive terminal simulator for safe practice
+- Copy-paste prompts to use with Claude Code
+- Achievement badges for completing challenges
+- Platform-specific instructions (Mac/Windows/Linux)
+
+Kids work through levels at their own pace, building real projects they can show off.
+
+---
+
+## Getting Started
+
+### Option 1: Use the Live Site
+Visit **[claudequest.ryanseamons.com](https://claudequest.ryanseamons.com)** and start learning!
+
+### Option 2: Run Locally
+```bash
+git clone https://github.com/ryanseamons/claude-quest.git
+cd claude-quest
+open index.html
 ```
 
 ---
 
-## Before You Begin
+## Prerequisites
 
-**What you need:**
 - A computer (Mac, Windows, or Linux)
 - Curiosity and willingness to experiment
-- A notebook for your "spell book" (notes)
-- About 30-60 minutes per level
-
-**The Golden Rules:**
-1. It's okay to make mistakes - that's how we learn!
-2. If something doesn't work, that's a puzzle to solve, not a failure
-3. Ask questions - there are no dumb questions
-4. Have fun - coding should be enjoyable!
+- ~30-60 minutes per level
+- A parent/guardian to help with Claude Code setup (Level 2)
 
 ---
 
-## How This Course Works
+## Sample Projects Kids Will Build
 
-Each level has:
-- **The Mission:** What you'll accomplish
-- **New Skills:** Things you'll learn
-- **Try It:** Hands-on practice
-- **Side Quests:** Optional bonus challenges
-- **Achievement:** What you unlock
-
----
-
-## Ready to Start?
-
-Head to `01-terminal-basics/` for your first adventure!
+- **Gamer Tag Generator** - Random cool name creator
+- **Dice Roller** - D&D-style dice with animations
+- **Number Guessing Game** - "Too high/too low" with celebrations
+- **Rock Paper Scissors** - Best of 3 against the computer
+- **Battle Royale Simulator** - Map exploration with loot and combat
+- **Their Own Dream Project** - Whatever they can imagine!
 
 ---
 
-## Course Contents
+## For Parents
+
+See [PARENT-GUIDE.md](PARENT-GUIDE.md) for:
+- How to set up Claude Code safely
+- What your child will be learning
+- How to support their learning journey
+- Safety considerations
+
+---
+
+## Course Philosophy
+
+**AI prompting is the new literacy.** Just as typing unlocked computers for a generation, knowing how to effectively communicate with AI unlocks a new level of creative power.
+
+This course doesn't teach kids to memorize syntax—it teaches them to **describe what they want** and iterate until they get it. That's a skill that will remain valuable regardless of how AI tools evolve.
+
+---
+
+## Files
 
 ```
-code-quest-adventures-with-ai/
-├── README.md                    (You are here!)
-├── 01-terminal-basics/          Level 1: Learn the terminal
-├── 02-meet-claude-code/         Level 2: Your AI assistant
-├── 03-first-commands/           Level 3: Making things happen
-├── 04-projects/                 Level 4: Build cool stuff
-├── 05-boss-level/               Level 5: Your own creation
-└── quest-log.md                 Track your progress!
+claude-quest/
+├── index.html          # Main interactive course
+├── app.js              # Game logic and terminal simulator
+├── styles.css          # Gaming-themed dark mode styling
+├── README.md           # You are here
+├── PARENT-GUIDE.md     # Guide for parents
+├── CHEAT-SHEET.md      # Quick reference for commands
+└── quest-log.md        # Progress tracking template
 ```
 
 ---
 
-*Created with love for young coders everywhere*
+## Contributing
+
+Found a bug or have an idea? Open an issue or PR at [github.com/ryanseamons/claude-quest](https://github.com/ryanseamons/claude-quest).
+
+---
+
+*Built for young builders everywhere*
