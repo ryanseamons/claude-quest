@@ -1,0 +1,16 @@
+{
+  "name": "code-quest-adventures-with-ai",
+  "version": "1.0.0",
+  "description": "You're about to embark on an epic adventure into the world of coding with AI! By the end of this quest, you'll be able to talk to computers, build cool projects, and have your very own AI coding assistant helping you along the way.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@playwright/test": "^1.57.0"
+  }
+}

@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Quest: Adventures with AI</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Particle Background -->
+    <div id="particles"></div>
+
+    <!-- Sound Toggle -->
+    <button id="sound-toggle" class="sound-btn" title="Toggle sounds">
+        <span class="sound-on">🔊</span>
+        <span class="sound-off" style="display:none">🔇</span>
+    </button>
+
+    <!-- Main Container -->
+    <div class="game-container">
+        <!-- Header with XP Bar -->
+        <header class="game-header">
+            <div class="logo-section">
+                <h1 class="game-title">
+                    <span class="title-icon">⚔️</span>
+                    CLAUDE QUEST
+                    <span class="title-sub">Adventures with AI</span>
+                </h1>
+            </div>
+            <div class="stats-section">
+                <div class="xp-container">
+                    <div class="xp-label">
+                        <span class="level-badge">LVL <span id="player-level">1</span></span>
+                        <span class="xp-text"><span id="current-xp">0</span> / <span id="next-level-xp">100</span> XP</span>
+                    </div>
+                    <div class="xp-bar">
+                        <div class="xp-fill" id="xp-fill"></div>
+                        <div class="xp-glow"></div>
+                    </div>
+                </div>
+                <div class="coins-display">
+                    <span class="coin-icon">💎</span>
+                    <span id="coins">0</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="level-nav">
+            <button class="nav-btn" data-level="home" id="nav-home">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-text">HQ</span>
+            </button>
+            <button class="nav-btn locked" data-level="1" id="nav-1">
+                <span class="nav-icon">📟</span>
+                <span class="nav-text">Terminal</span>
+                <span class="lock-icon">🔒</span>
+            </button>
+            <button class="nav-btn locked" data-level="2" id="nav-2">
+                <span class="nav-icon">🤖</span>
+                <span class="nav-text">Claude</span>
+                <span class="lock-icon">🔒</span>
+            </button>
+            <button class="nav-btn locked" data-level="3" id="nav-3">
+                <span class="nav-icon">⚡</span>
+                <span class="nav-text">Prompts</span>
+                <span class="lock-icon">🔒</span>
+            </button>
+            <button class="nav-btn locked" data-level="4" id="nav-4">
+                <span class="nav-icon">🚀</span>
+                <span class="nav-text">Level Up</span>
+                <span class="lock-icon">🔒</span>
+            </button>
+            <button class="nav-btn locked" data-level="5" id="nav-5">
+                <span class="nav-icon">👑</span>
+                <span class="nav-text">Boss</span>
+                <span class="lock-icon">🔒</span>
+            </button>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="game-content" id="main-content">
+            <!-- Home Screen -->
+            <section class="level-section active" id="level-home">
+                <div class="welcome-screen">
+                    <div class="welcome-hero">
+                        <div class="hero-text">
+                            <h2 class="hero-title">Your AI Adventure Starts Here</h2>
+                            <p class="hero-desc">Learn to talk to Claude and build anything you can imagine.</p>
+                            <div class="hero-journey">
+                                <span class="journey-step">🎮 Gamer</span>
+                                <span class="journey-arrow">→</span>
+                                <span class="journey-step">🤖 AI Pro</span>
+                                <span class="journey-arrow">→</span>
+                                <span class="journey-step">🚀 Builder</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="player-setup" id="player-setup">
+                        <div class="input-group">
+                            <label for="player-name">ENTER YOUR GAMER TAG:</label>
+                            <input type="text" id="player-name" placeholder="Type your name..." maxlength="20">
+                        </div>
+                        <button class="btn-primary btn-glow" id="start-quest">
+                            <span class="btn-text">⚔️ START QUEST ⚔️</span>
+                            <span class="btn-particles"></span>
+                        </button>
+                    </div>
+
+                    <div class="returning-player" id="returning-player" style="display: none;">
+                        <p class="welcome-back">Welcome back, <span id="display-name"></span>!</p>
+                        <button class="btn-primary btn-glow" id="continue-quest">
+                            <span class="btn-text">▶️ CONTINUE QUEST</span>
+                        </button>
+                        <button class="btn-secondary" id="reset-progress">Reset Progress</button>
+                    </div>
+
+                    <div class="quest-map">
+                        <h3>📜 YOUR QUEST MAP</h3>
+                        <div class="map-container">
+                            <div class="map-path">
+                                <div class="map-node start" data-level="1">
+                                    <span class="node-icon">📟</span>
+                                    <span class="node-name">Terminal Basics</span>
+                                    <span class="node-status">START HERE</span>
+                                </div>
+                                <div class="map-connector"></div>
+                                <div class="map-node" data-level="2">
+                                    <span class="node-icon">🤖</span>
+                                    <span class="node-name">Meet Claude</span>
+                                    <span class="node-status">LOCKED</span>
+                                </div>
+                                <div class="map-connector"></div>
+                                <div class="map-node" data-level="3">
+                                    <span class="node-icon">⚡</span>
+                                    <span class="node-name">First Prompts</span>
+                                    <span class="node-status">LOCKED</span>
+                                </div>
+                                <div class="map-connector"></div>
+                                <div class="map-node" data-level="4">
+                                    <span class="node-icon">🚀</span>
+                                    <span class="node-name">Level Up</span>
+                                    <span class="node-status">LOCKED</span>
+                                </div>
+                                <div class="map-connector"></div>
+                                <div class="map-node boss" data-level="5">
+                                    <span class="node-icon">👑</span>
+                                    <span class="node-name">BOSS LEVEL</span>
+                                    <span class="node-status">LOCKED</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="what-youll-learn">
+                        <h3>🎯 SKILLS YOU'LL UNLOCK</h3>
+                        <div class="skills-grid">
+                            <div class="skill-card">
+                                <span class="skill-icon">📟</span>
+                                <span class="skill-name">Terminal Basics</span>
+                                <p>Navigate your computer like a pro</p>
+                            </div>
+                            <div class="skill-card">
+                                <span class="skill-icon">🤖</span>
+                                <span class="skill-name">AI Prompting</span>
+                                <p>Learn to talk to AI and get great results</p>
+                            </div>
+                            <div class="skill-card">
+                                <span class="skill-icon">🌐</span>
+                                <span class="skill-name">Web App Building</span>
+                                <p>Create real apps that run in browsers</p>
+                            </div>
+                            <div class="skill-card">
+                                <span class="skill-icon">🎮</span>
+                                <span class="skill-name">Project Creation</span>
+                                <p>Build projects you can show off to friends</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Level 1: Terminal Basics -->
+            <section class="level-section" id="level-1">
+                <div class="level-header">
+                    <div class="level-badge-large">LEVEL 1</div>
+                    <h2 class="level-title">Terminal Basics</h2>
+                    <p class="level-subtitle">Learn to speak the computer's secret language</p>
+                    <div class="level-rewards">
+                        <span class="reward">🏆 +100 XP</span>
+                        <span class="reward">💎 +10 Gems</span>
+                        <span class="reward">🎖️ Terminal Navigator Badge</span>
+                    </div>
+                </div>
+
+                <div class="mission-briefing">
+                    <div class="briefing-header">
+                        <span class="briefing-icon">📋</span>
+                        <h3>MISSION BRIEFING</h3>
+                    </div>
+                    <div class="briefing-content">
+                        <p>Before you can team up with your AI coding buddy, you need to learn the <strong>terminal</strong> - a secret text-based way to control your computer!</p>
+                        <p>Think of it like this: normally you click on things with your mouse. But coders <em>type commands</em> instead - it's like texting your computer and having it do exactly what you say!</p>
+                        <div class="fun-fact">
+                            <span class="fact-icon">💡</span>
+                            <span>Fun fact: Hackers in movies always use terminals because it looks cool AND it's actually faster!</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h3>🚀 Opening Your Terminal</h3>
+                    <div class="platform-tabs">
+                        <button class="platform-tab active" data-platform="mac">🍎 Mac</button>
+                        <button class="platform-tab" data-platform="windows">🪟 Windows</button>
+                        <button class="platform-tab" data-platform="linux">🐧 Linux</button>
+                    </div>
+                    <div class="platform-content active" data-platform="mac">
+                        <ol class="step-list">
+                            <li>Press <kbd>Cmd</kbd> + <kbd>Space</kbd> (opens Spotlight)</li>
+                            <li>Type <code>Terminal</code></li>
+                            <li>Press <kbd>Enter</kbd></li>
+                        </ol>
+                    </div>
+                    <div class="platform-content" data-platform="windows">
+                        <ol class="step-list">
+                            <li>Press the <kbd>Windows</kbd> key</li>
+                            <li>Type <code>PowerShell</code></li>
+                            <li>Click to open</li>
+                        </ol>
+                    </div>
+                    <div class="platform-content" data-platform="linux">
+                        <ol class="step-list">
+                            <li>Press <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>T</kbd></li>
+                            <li>That's it! 🎉</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h3>⌨️ Your First Commands</h3>
+                    <p>Try these in the simulator below, then on your real terminal!</p>
+
+                    <div class="command-cards">
+                        <div class="command-card" data-command="pwd">
+                            <div class="command-header">
+                                <code class="command-code">pwd</code>
+                                <span class="command-xp">+5 XP</span>
+                            </div>
+                            <div class="command-desc">
+                                <strong>Where am I?</strong>
+                                <p>"Print Working Directory" - shows your current location</p>
+                                <p class="memory-trick">🧠 Memory trick: "Print Where am I, Dude?"</p>
+                            </div>
+                        </div>
+
+                        <div class="command-card" data-command="ls">
+                            <div class="command-header">
+                                <code class="command-code">ls</code>
+                                <span class="command-xp">+5 XP</span>
+                            </div>
+                            <div class="command-desc">
+                                <strong>What's here?</strong>
+                                <p>Lists all files and folders in your current location</p>
+                                <p class="memory-trick">🧠 Memory trick: "List Stuff"</p>
+                            </div>
+                        </div>
+
+                        <div class="command-card" data-command="cd">
+                            <div class="command-header">
+                                <code class="command-code">cd [folder]</code>
+                                <span class="command-xp">+5 XP</span>
+                            </div>
+                            <div class="command-desc">
+                                <strong>Move to a folder</strong>
+                                <p>"Change Directory" - moves you to a different location</p>
+                                <p class="memory-trick">🧠 <code>cd ..</code> goes back one folder</p>
+                            </div>
+                        </div>
+
+                        <div class="command-card" data-command="mkdir">
+                            <div class="command-header">
+                                <code class="command-code">mkdir [name]</code>
+                                <span class="command-xp">+5 XP</span>
+                            </div>
+                            <div class="command-desc">
+                                <strong>Create a folder</strong>
+                                <p>"Make Directory" - creates a new folder</p>
+                                <p class="memory-trick">🧠 Memory trick: "MaKe DIRectory"</p>
+                            </div>
+                        </div>
+
+                        <div class="command-card" data-command="clear">
+                            <div class="command-header">
+                                <code class="command-code">clear</code>
+                                <span class="command-xp">+5 XP</span>
+                            </div>
+                            <div class="command-desc">
+                                <strong>Clean up!</strong>
+                                <p>Clears the terminal screen - nice and tidy!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h3>🎮 TERMINAL SIMULATOR</h3>
+                    <p>Practice commands right here! Complete the challenges below.</p>
+
+                    <div class="terminal-container">
+                        <div class="terminal-header">
+                            <div class="terminal-buttons">
+                                <span class="term-btn red"></span>
+                                <span class="term-btn yellow"></span>
+                                <span class="term-btn green"></span>
+                            </div>
+                            <span class="terminal-title">Claude Quest Terminal</span>
+                        </div>
+                        <div class="terminal-body" id="terminal-output">
+                            <div class="terminal-line">
+                                <span class="term-success">Welcome to Claude Quest Terminal!</span>
+                            </div>
+                            <div class="terminal-line">
+                                <span class="term-info">Type commands below and press Enter. Try: pwd, ls, cd, mkdir</span>
+                            </div>
+                        </div>
+                        <div class="terminal-input-line">
+                            <span class="terminal-prompt">guest@codequest:~$</span>
+                            <input type="text" id="terminal-input" class="terminal-input" placeholder="Type a command..." autocomplete="off" spellcheck="false">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h3>🎯 CHALLENGE MISSIONS</h3>
+                    <div class="challenges-container" id="level1-challenges">
+                        <div class="challenge-card" data-challenge="l1-pwd">
+                            <div class="challenge-status">
+                                <span class="challenge-checkbox">☐</span>
+                            </div>
+                            <div class="challenge-info">
+                                <span class="challenge-title">Find Your Location</span>
+                                <span class="challenge-desc">Use <code>pwd</code> to see where you are</span>
+                            </div>
+                            <div class="challenge-reward">+10 XP</div>
+                        </div>
+
+                        <div class="challenge-card" data-challenge="l1-ls">
+                            <div class="challenge-status">
+                                <span class="challenge-checkbox">☐</span>
+                            </div>
+                            <div class="challenge-info">
+                                <span class="challenge-title">Look Around</span>
+                                <span class="challenge-desc">Use <code>ls</code> to list files</span>
+                            </div>
+                            <div class="challenge-reward">+10 XP</div>
+                        </div>
+
+                        <div class="challenge-card" data-challenge="l1-cd">
+                            <div class="challenge-status">
+                                <span class="challenge-checkbox">☐</span>
+                            </div>
+                            <div class="challenge-info">
+                                <span class="challenge-title">Navigate to Documents</span>
+                                <span class="challenge-desc">Use <code>cd Documents</code></span>
+                            </div>
+                            <div class="challenge-reward">+10 XP</div>
+                        </div>
+
+                        <div class="challenge-card" data-challenge="l1-mkdir">
+                            <div class="challenge-status">
+                                <span class="challenge-checkbox">☐</span>
+                            </div>
+                            <div class="challenge-info">
+                                <span class="challenge-title">Create Your Folder</span>
+                                <span class="challenge-desc">Use <code>mkdir claude-quest</code></span>
+                            </div>
+                            <div class="challenge-reward">+15 XP</div>
+                        </div>
+
+                        <div class="challenge-card" data-challenge="l1-navigate">
+                            <div class="challenge-status">
+                                <span class="challenge-checkbox">☐</span>
+                            </div>
+                            <div class="challenge-info">
+                                <span class="challenge-title">Enter Your Lair</span>
+                                <span class="challenge-desc">Navigate into claude-quest folder</span>
+                            </div>
+                            <div class="challenge-reward">+15 XP</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="level-complete-section" id="level1-complete" style="display: none;">
+                    <div class="complete-banner">
+                        <div class="complete-icon">🎉</div>
+                        <h3>LEVEL 1 COMPLETE!</h3>
+                        <p>You've unlocked the Terminal Navigator badge!</p>
+                        <div class="badge-earned">
+                            <div class="badge-icon">🎖️</div>
+                            <div class="badge-name">Terminal Navigator</div>
+                        </div>
+                        <button class="btn-primary btn-glow" id="next-level-1">
+                            Continue to Level 2 ➜
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Level 2: Meet Claude -->
+            <section class="level-section" id="level-2">
+                <div class="level-header">
+                    <div class="level-badge-large">LEVEL 2</div>
+                    <h2 class="level-title">Meet Claude Code</h2>
+                    <p class="level-subtitle">Your AI Coding Companion</p>
+                    <div class="level-rewards">
+                        <span class="reward">🏆 +150 XP</span>
+                        <span class="reward">💎 +15 Gems</span>
+                        <span class="reward">🎖️ AI Whisperer Badge</span>
+                    </div>
+                </div>
+
+                <div class="mission-briefing">
+                    <div class="briefing-header">
+                        <span class="briefing-icon">📋</span>
+                        <h3>MISSION BRIEFING</h3>
+                    </div>
+                    <div class="briefing-content">
+                        <p>Now you're going to meet your new teammate: <strong>Claude Code</strong>! It's an AI that understands what you want to build and helps you create it.</p>
+                        <p>Think of Claude as a super-smart coding buddy who never gets tired of your questions!</p>
+                        <div class="fun-fact">
+                            <span class="fact-icon">💡</span>
+                            <span>Claude is named after Claude Shannon, the "father of information theory" - he invented the math that makes all digital stuff work!</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-section callout-section">
+                    <h3>🖥️ Time to Use a REAL Terminal!</h3>
+                    <p>In Level 1, you practiced with a simulator in your browser. Now it's time to use a <strong>real terminal</strong> on your computer!</p>
+                    <p>Open your terminal and put it <strong>side-by-side</strong> with this website so you can follow along.</p>
+
+                    <div class="platform-tabs">
+                        <button class="platform-tab active" data-platform="mac">🍎 Mac</button>
+                        <button class="platform-tab" data-platform="windows">🪟 Windows</button>
+                    </div>
+
+                    <div class="platform-content active" data-platform="mac">
+                        <p><strong>How to open Terminal on Mac:</strong></p>
+                        <ol>
+                            <li>Press <code>Cmd + Space</code> to open Spotlight</li>
+                            <li>Type "Terminal" and press Enter</li>
+                        </ol>
+                        <p>Or find it in Applications → Utilities → Terminal</p>
+                    </div>
+
+                    <div class="platform-content" data-platform="windows">
+                        <p><strong>How to open Terminal on Windows:</strong></p>
+                        <ol>
+                            <li>Press <code>Windows key</code>, type "PowerShell"</li>
+                            <li>Click "Windows PowerShell" to open it</li>
+                        </ol>
+                        <p>Or right-click the Start button and select "Terminal"</p>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h3>🔧 Installing Claude Code</h3>
+                    <p>Before we can use Claude, we need to install some things. <strong>Ask a parent or guardian to help!</strong></p>
+
+                    <div class="install-steps">
+                        <div class="install-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Install Node.js</h4>
+                                <p>First, check if Node.js is already installed. In your terminal, type:</p>
+                                <div class="code-block">
+                                    <code>node --version</code>
+                                    <button class="copy-btn" data-copy="node --version">📋 Copy</button>
+                                </div>
+                                <p>If you see a version number (like v18.0.0), skip to Step 2!</p>
+                                <p>If you get an error, you need to install Node.js:</p>
+
+                                <div class="platform-tabs">
+                                    <button class="platform-tab active" data-platform="mac-node">🍎 Mac</button>
+                                    <button class="platform-tab" data-platform="windows-node">🪟 Windows</button>
+                                </div>
+
+                                <div class="platform-content active" data-platform="mac-node">
+                                    <p><strong>Option A:</strong> Download from <a href="https://nodejs.org" target="_blank">nodejs.org</a> - click the big green "LTS" button, then run the installer.</p>
+                                    <p><strong>Option B:</strong> If you have Homebrew, run:</p>
+                                    <div class="code-block">
+                                        <code>brew install node</code>
+                                        <button class="copy-btn" data-copy="brew install node">📋 Copy</button>
+                                    </div>
+                                </div>
+
+                                <div class="platform-content" data-platform="windows-node">
+                                    <p>Download from <a href="https://nodejs.org" target="_blank">nodejs.org</a> - click the big green "LTS" button, then run the installer.</p>
+                                    <p>Click "Next" through all the screens. The default options are fine!</p>
+                                    <p><strong>Important:</strong> After installing, close and reopen PowerShell.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="install-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Install Claude Code</h4>
+                                <p>Now install Claude Code with this command:</p>
+                                <div class="code-block">
+                                    <code>npm install -g @anthropic-ai/claude-code</code>
+                                    <button class="copy-btn" data-copy="npm install -g @anthropic-ai/claude-code">📋 Copy</button>
+                                </div>
+                                <p>This downloads Claude Code to your computer. It might take a minute!</p>
+                                <div class="fun-fact">
+                                    <span class="fact-icon">💡</span>
+                                    <span>npm stands for "Node Package Manager" - it's like an app store for coding tools!</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="install-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Get an API Key</h4>
+                                <p><strong>Parents:</strong> This step requires creating an Anthropic account.</p>
+                                <ol>
+                                    <li>Go to <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a></li>
+                                    <li>Create an account or sign in</li>
+                                    <li>Go to "API Keys" and create a new key</li>
+                                    <li>Copy the key (you'll need it in the next step)</li>
+                                </ol>
+                                <p>The first time you run Claude, it will ask for this key.</p>
+                            </div>
+                        </div>
+
+                        <div class="install-step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h4>Create Your Project Folder</h4>
+                                <p>Remember the <code>claude-quest</code> folder from Level 1? That was practice! Now let's make a real one:</p>
+
+                                <div class="platform-tabs">
+                                    <button class="platform-tab active" data-platform="mac-folder">🍎 Mac</button>
+                                    <button class="platform-tab" data-platform="windows-folder">🪟 Windows</button>
+                                </div>
+
+                                <div class="platform-content active" data-platform="mac-folder">
+                                    <div class="code-block">
+                                        <code>cd ~/Desktop && mkdir claude-quest && cd claude-quest</code>
+                                        <button class="copy-btn" data-copy="cd ~/Desktop && mkdir claude-quest && cd claude-quest">📋 Copy</button>
+                                    </div>
+                                </div>
+
+                                <div class="platform-content" data-platform="windows-folder">
+                                    <div class="code-block">
+                                        <code>cd ~\Desktop; mkdir claude-quest; cd claude-quest</code>
+                                        <button class="copy-btn" data-copy="cd ~\Desktop; mkdir claude-quest; cd claude-quest">📋 Copy</button>
+                                    </div>
+                                </div>
+                                <p>This creates your project folder on your Desktop and moves into it!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h3>🚀 Starting Claude Code</h3>
+                    <p>You're ready! In your terminal (inside the claude-quest folder), type:</p>
+                    <div class="code-block">
+                        <code>claude</code>
+                        <button class="copy-btn" data-copy="claude">📋 Copy</button>
+                    </div>
+                    <p>The first time you run it, Claude will ask for your API key. Paste it in and press Enter!</p>
+                    <p>You'll see Claude Code start up with a welcome message.</p>
+
+                    <div class="parent-note">
+                        <h4>👨‍👩‍👧 Note for Parents</h4>
+                        <p>Claude Code asks for permission before doing things like creating files. This is a safety feature! However, the prompts can be confusing for kids.</p>
+                        <p><strong>Option 1 (Recommended for learning):</strong> Use normal mode. Help your child understand the permission prompts - it teaches good habits!</p>
+                        <p><strong>Option 2 (Smoother experience):</strong> Start Claude with:</p>
+                        <div class="code-block">
+                            <code>claude --dangerously-skip-permissions</code>
+                            <button class="copy-btn" data-copy="claude --dangerously-skip-permissions">📋 Copy</button>
+                        </div>
+                        <p>This skips permission prompts. Only use this in a safe folder where Claude can freely create and edit files.</p>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h3>💬 Talking to Claude</h3>
+                    <p>Claude understands plain English! Here are some things you can say:</p>
+
+                    <div class="prompt-examples">
+                        <div class="prompt-card">
+                            <div class="prompt-type">🤔 Ask Questions</div>
+                            <div class="prompt-text">"What is a variable in programming?"</div>
+                            <button class="copy-btn small" data-copy="What is a variable in programming?">📋</button>
+                        </div>
+                        <div class="prompt-card">
+                            <div class="prompt-type">🛠️ Get Help</div>
+                            <div class="prompt-text">"I'm getting an error. Can you help me understand it?"</div>
+                            <button class="copy-btn small" data-copy="I'm getting an error. Can you help me understand it?">📋</button>
+                        </div>
+                        <div class="prompt-card">
+                            <div class="prompt-type">🏗️ Build Things</div>
+                            <div class="prompt-text">"Create a Python program that tells me a random joke"</div>
+                            <button class="copy-btn small" data-copy="Create a Python program that tells me a random joke">📋</button>
+                        </div>
+                        <div class="prompt-card">
+                            <div class="prompt-type">📚 Learn</div>
+                            <div class="prompt-text">"Explain what 'Hello World' means in programming"</div>
+                            <button class="copy-btn small" data-copy="Explain what 'Hello World' means in programming">📋</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h3>⚡ Power Tips</h3>
+                    <div class="tips-grid">
+                        <div class="tip-card">
+                            <span class="tip-icon">🎯</span>
+                            <h4>Be Specific</h4>
+                            <p><strong>Instead of:</strong> "Make me a game"</p>
+                            <p><strong>Try:</strong> "Make a number guessing game where I guess 1-10"</p>
+                        </div>
+                        <div class="tip-card">
+                            <span class="tip-icon">🔄</span>
+                            <h4>Follow Up</h4>
+                            <p>"Can you explain that again?"</p>
+                            <p>"What does that line do?"</p>
+                        </div>
+                        <div class="tip-card">
+                            <span class="tip-icon">🙋</span>
+                            <h4>No Dumb Questions</h4>
+                            <p>Claude loves to explain things! If you don't understand, just ask again.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h3>🎮 Claude Commands</h3>
+                    <div class="command-cards horizontal">
+                        <div class="command-card mini">
+                            <code>/help</code>
+                            <span>See all commands</span>
+                        </div>
+                        <div class="command-card mini">
+                            <code>/clear</code>
+                            <span>Fresh conversation</span>
+                        </div>
+                        <div class="command-card mini">
+                            <code>Ctrl+C</code>
+                            <span>Exit Claude</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h3>🎯 CHALLENGE MISSIONS</h3>
+                    <p>Complete these on your REAL terminal with Claude Code!</p>
+                    <div class="challenges-container" id="level2-challenges">
+                        <div class="challenge-card" data-challenge="l2-start">
+                            <div class="challenge-status">
+                                <span class="challenge-checkbox">☐</span>
+                            </div>
+                            <div class="challenge-info">
+                                <span class="challenge-title">Launch Claude</span>
+                                <span class="challenge-desc">Start Claude Code by typing <code>claude</code></span>
+                            </div>
+                            <div class="challenge-reward">+20 XP</div>
+                            <button class="challenge-complete-btn">Mark Complete</button>
+                        </div>
+
+                        <div class="challenge-card" data-challenge="l2-hello">
+                            <div class="challenge-status">
+                                <span class="challenge-checkbox">☐</span>
+                            </div>
+                            <div class="challenge-info">
+                                <span class="challenge-title">Say Hello</span>
+                                <span class="challenge-desc">Introduce yourself to Claude</span>
+                            </div>
+                            <div class="challenge-reward">+20 XP</div>
+                            <button class="challenge-complete-btn">Mark Complete</button>
+                        </div>
+
+                        <div class="challenge-card" data-challenge="l2-question">
+                            <div class="challenge-status">
+                                <span class="challenge-checkbox">☐</span>
+                            </div>
+                            <div class="challenge-info">
+                                <span class="challenge-title">Ask a Question</span>
+                                <span class="challenge-desc">Ask Claude anything about coding</span>
+                            </div>
+                            <div class="challenge-reward">+25 XP</div>
+                            <button class="challenge-complete-btn">Mark Complete</button>
+                        </div>
+
+                        <div class="challenge-card" data-challenge="l2-helloworld">
+                            <div class="challenge-status">
+                                <span class="challenge-checkbox">☐</span>
+                            </div>
+                            <div class="challenge-info">
+                                <span class="challenge-title">Hello World</span>
+                                <span class="challenge-desc">Ask Claude to show you "Hello World" in Python</span>
+                            </div>
+                            <div class="challenge-reward">+30 XP</div>
+                            <button class="challenge-complete-btn">Mark Complete</button>
+                        </div>
+
+                        <div class="challenge-card" data-challenge="l2-help">
+                            <div class="challenge-status">
+                                <span class="challenge-checkbox">☐</span>
+                            </div>
+                            <div class="challenge-info">
+                                <span class="challenge-title">Explore Commands</span>
+                                <span class="challenge-desc">Try the <code>/help</code> command</span>
+                            </div>
+                            <div class="challenge-reward">+15 XP</div>
+                            <button class="challenge-complete-btn">Mark Complete</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="level-complete-section" id="level2-complete" style="display: none;">
+                    <div class="complete-banner">
+                        <div class="complete-icon">🎉</div>
+                        <h3>LEVEL 2 COMPLETE!</h3>
+                        <p>You've unlocked the AI Whisperer badge!</p>
+                        <div class="badge-earned">
+                            <div class="badge-icon">🎖️</div>
+                            <div class="badge-name">AI Whisperer</div>
+                        </div>
+                        <button class="btn-primary btn-glow" id="next-level-2">
+                            Continue to Level 3 ➜
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Level 3: First Prompts -->
+            <section class="level-section" id="level-3">
+                <div class="level-header">
+                    <div class="level-badge-large">LEVEL 3</div>
+                    <h2 class="level-title">Your First Prompts</h2>
+                    <p class="level-subtitle">Learn to Ask Claude to Build Things!</p>
+                    <div class="level-rewards">
+                        <span class="reward">🏆 +200 XP</span>
+                        <span class="reward">💎 +25 Gems</span>
+                        <span class="reward">🎖️ Code Creator Badge</span>
+                    </div>
+                </div>
+
+                <div class="mission-briefing">
+                    <div class="briefing-header">
+                        <span class="briefing-icon">📋</span>
+                        <h3>MISSION BRIEFING</h3>
+                    </div>
+                    <div class="briefing-content">
+                        <p>This is where the magic happens! You'll learn to <strong>prompt Claude</strong> to build cool things.</p>
+                        <p>The secret to great AI prompts: <strong>Be specific about what you want!</strong> Tell Claude what to build, how it should work, and what it should look like.</p>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h3>🎮 PROMPT PRACTICE</h3>
+                    <p>Copy each prompt, paste it to Claude, and watch the magic happen!</p>
+
+                    <div class="project-cards">
+                        <div class="project-card" data-project="greeter">
+                            <div class="project-header">
+                                <span class="project-icon">🎮</span>
+                                <span class="project-name">Gamer Tag Generator</span>
+                                <span class="project-xp">+25 XP</span>
+                            </div>
+                            <p class="project-desc">Generate epic random gamer tags!</p>
+                            <div class="project-prompt">
+                                <code>Create a gamer tag generator that makes random cool names by combining adjectives + nouns + numbers (like "ShadowNinja_99" or "EpicWolf_X"). Let me click to generate new ones!</code>
+                                <button class="copy-btn" data-copy='Create a gamer tag generator that makes random cool names by combining adjectives + nouns + numbers (like "ShadowNinja_99" or "EpicWolf_X"). Let me click to generate new ones!'>📋 Copy</button>
+                            </div>
+                            <div class="project-status" data-challenge="l3-greeter">
+                                <span class="status-icon">☐</span>
+                                <button class="challenge-complete-btn">Mark Complete</button>
+                            </div>
+                        </div>
+
+                        <div class="project-card" data-project="fortune">
+                            <div class="project-header">
+                                <span class="project-icon">🎰</span>
+                                <span class="project-name">Dice Roller</span>
+                                <span class="project-xp">+25 XP</span>
+                            </div>
+                            <p class="project-desc">Roll different types of dice for games!</p>
+                            <div class="project-prompt">
+                                <code>Create a dice roller where I can roll different dice (d4, d6, d8, d12, d20). Show buttons for each dice type and animate the roll!</code>
+                                <button class="copy-btn" data-copy='Create a dice roller where I can roll different dice (d4, d6, d8, d12, d20). Show buttons for each dice type and animate the roll!'>📋 Copy</button>
+                            </div>
+                            <div class="project-status" data-challenge="l3-fortune">
+                                <span class="status-icon">☐</span>
+                                <button class="challenge-complete-btn">Mark Complete</button>
+                            </div>
+                        </div>
+
+                        <div class="project-card" data-project="mathquiz">
+                            <div class="project-header">
+                                <span class="project-icon">🎯</span>
+                                <span class="project-name">Number Guessing</span>
+                                <span class="project-xp">+30 XP</span>
+                            </div>
+                            <p class="project-desc">Guess the secret number - higher or lower!</p>
+                            <div class="project-prompt">
+                                <code>Create a number guessing game! Pick a random number 1-100, let me type guesses, tell me "too high" or "too low", count my attempts, and show a celebration when I win!</code>
+                                <button class="copy-btn" data-copy='Create a number guessing game! Pick a random number 1-100, let me type guesses, tell me "too high" or "too low", count my attempts, and show a celebration when I win!'>📋 Copy</button>
+                            </div>
+                            <div class="project-status" data-challenge="l3-mathquiz">
+                                <span class="status-icon">☐</span>
+                                <button class="challenge-complete-btn">Mark Complete</button>
+                            </div>
+                        </div>
+
+                        <div class="project-card" data-project="compliment">
+                            <div class="project-header">
+                                <span class="project-icon">🗡️</span>
+                                <span class="project-name">Damage Calculator</span>
+                                <span class="project-xp">+25 XP</span>
+                            </div>
+                            <p class="project-desc">Calculate weapon damage with crits!</p>
+                            <div class="project-prompt">
+                                <code>Create an RPG damage calculator! I enter base damage, it checks for critical hits (20% chance for 2x damage), adds random variance, and shows the total with cool visual effects!</code>
+                                <button class="copy-btn" data-copy='Create an RPG damage calculator! I enter base damage, it checks for critical hits (20% chance for 2x damage), adds random variance, and shows the total with cool visual effects!'>📋 Copy</button>
+                            </div>
+                            <div class="project-status" data-challenge="l3-compliment">
+                                <span class="status-icon">☐</span>
+                                <button class="challenge-complete-btn">Mark Complete</button>
+                            </div>
+                        </div>
+
+                        <div class="project-card" data-project="countdown">
+                            <div class="project-header">
+                                <span class="project-icon">⏱️</span>
+                                <span class="project-name">Match Timer</span>
+                                <span class="project-xp">+30 XP</span>
+                            </div>
+                            <p class="project-desc">Countdown timer like in games!</p>
+                            <div class="project-prompt">
+                                <code>Create an esports match countdown timer! Click to start, show big dramatic numbers counting down from 10, then flash "MATCH START!" with epic effects!</code>
+                                <button class="copy-btn" data-copy='Create an esports match countdown timer! Click to start, show big dramatic numbers counting down from 10, then flash "MATCH START!" with epic effects!'>📋 Copy</button>
+                            </div>
+                            <div class="project-status" data-challenge="l3-countdown">
+                                <span class="status-icon">☐</span>
+                                <button class="challenge-complete-btn">Mark Complete</button>
+                            </div>
+                        </div>
+
+                        <div class="project-card" data-project="rps">
+                            <div class="project-header">
+                                <span class="project-icon">⚔️</span>
+                                <span class="project-name">Rock Paper Scissors</span>
+                                <span class="project-xp">+40 XP</span>
+                            </div>
+                            <p class="project-desc">Battle the computer - best of 3!</p>
+                            <div class="project-prompt">
+                                <code>Create rock paper scissors! Click buttons to choose, play against the computer, best of 3 rounds. Show each choice with emoji, track the score, and declare a champion!</code>
+                                <button class="copy-btn" data-copy='Create rock paper scissors! Click buttons to choose, play against the computer, best of 3 rounds. Show each choice with emoji, track the score, and declare a champion!'>📋 Copy</button>
+                            </div>
+                            <div class="project-status" data-challenge="l3-rps">
+                                <span class="status-icon">☐</span>
+                                <button class="challenge-complete-btn">Mark Complete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h3>🌐 Opening Your Creation</h3>
+                    <p>Claude will create an HTML file. To see it:</p>
+                    <ol class="steps-list">
+                        <li>Find the .html file in your claude-quest folder</li>
+                        <li>Double-click it to open in your browser!</li>
+                    </ol>
+                    <div class="fun-fact">
+                        <span class="fact-icon">🔄</span>
+                        <span>Made changes? Refresh your browser (Cmd+R on Mac, Ctrl+R on Windows) to see them!</span>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h3>🔧 The Art of Iteration</h3>
+                    <p>Your first version is just the start! Try asking Claude to improve it:</p>
+                    <div class="upgrade-ideas">
+                        <div class="upgrade">"Make it look more like a game - dark background, cool colors"</div>
+                        <div class="upgrade">"Add sound effects when I click"</div>
+                        <div class="upgrade">"Add a 'Play Again' button"</div>
+                        <div class="upgrade">"Make it save my high score"</div>
+                    </div>
+                    <p class="prompt-tip"><strong>Pro tip:</strong> Good prompts are specific! Instead of "make it better", try "add a confetti animation when I win".</p>
+                </div>
+
+                <div class="level-complete-section" id="level3-complete" style="display: none;">
+                    <div class="complete-banner">
+                        <div class="complete-icon">🎉</div>
+                        <h3>LEVEL 3 COMPLETE!</h3>
+                        <p>You've unlocked the Code Creator badge!</p>
+                        <div class="badge-earned">
+                            <div class="badge-icon">🎖️</div>
+                            <div class="badge-name">Code Creator</div>
+                        </div>
+                        <button class="btn-primary btn-glow" id="next-level-3">
+                            Continue to Level 4 ➜
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Level 4: Level Up Your Projects -->
+            <section class="level-section" id="level-4">
+                <div class="level-header">
+                    <div class="level-badge-large">LEVEL 4</div>
+                    <h2 class="level-title">Level Up Your Projects</h2>
+                    <p class="level-subtitle">Master the Art of Iteration!</p>
+                    <div class="level-rewards">
+                        <span class="reward">🏆 +300 XP</span>
+                        <span class="reward">💎 +40 Gems</span>
+                        <span class="reward">🎖️ Master Prompter Badge</span>
+                    </div>
+                </div>
+
+                <div class="mission-briefing">
+                    <div class="briefing-header">
+                        <span class="briefing-icon">📋</span>
+                        <h3>MISSION BRIEFING</h3>
+                    </div>
+                    <div class="briefing-content">
+                        <p>Your simple projects work, but they could be SO much cooler! Time to learn the pro skill: <strong>iteration</strong>.</p>
+                        <p>Iteration means making something better step by step. The best creators don't get it perfect the first time - they improve it!</p>
+                        <div class="fun-fact">
+                            <span class="fact-icon">💡</span>
+                            <span>Real game developers spend months iterating on their games - adding features, fixing bugs, and polishing the experience!</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-section callout-section">
+                    <h3>🎯 The Iteration Loop</h3>
+                    <p>Pro creators follow this cycle:</p>
+                    <div class="web-trio">
+                        <div class="trio-item">
+                            <span class="trio-icon">🏗️</span>
+                            <h4>Build</h4>
+                            <p>Create a basic working version</p>
+                        </div>
+                        <div class="trio-item">
+                            <span class="trio-icon">🎮</span>
+                            <h4>Test</h4>
+                            <p>Try it out, find what's missing</p>
+                        </div>
+                        <div class="trio-item">
+                            <span class="trio-icon">✨</span>
+                            <h4>Improve</h4>
+                            <p>Ask Claude to add one feature at a time</p>
+                        </div>
+                    </div>
+                    <p>The key: <strong>One change at a time!</strong> Don't ask for 10 features at once - add them step by step.</p>
+                </div>
+
+                <div class="content-section">
+                    <h3>🚀 UPGRADE CHALLENGES</h3>
+                    <p>Take any project from Level 3 and make it awesome! Here are upgrade ideas:</p>
+
+                    <div class="project-cards">
+                        <div class="project-card" data-project="upgrade-visual">
+                            <div class="project-header">
+                                <span class="project-icon">🎨</span>
+                                <span class="project-name">Visual Upgrade</span>
+                                <span class="project-xp">+35 XP</span>
+                            </div>
+                            <p class="project-desc">Make it look professional!</p>
+                            <div class="project-prompt">
+                                <code>Make this look more professional: add a dark gaming theme with a gradient background, make the buttons glow when I hover, and add smooth animations when things change.</code>
+                                <button class="copy-btn" data-copy='Make this look more professional: add a dark gaming theme with a gradient background, make the buttons glow when I hover, and add smooth animations when things change.'>📋 Copy</button>
+                            </div>
+                            <div class="project-status" data-challenge="l4-adventure">
+                                <span class="status-icon">☐</span>
+                                <button class="challenge-complete-btn">Mark Complete</button>
+                            </div>
+                        </div>
+
+                        <div class="project-card" data-project="upgrade-sound">
+                            <div class="project-header">
+                                <span class="project-icon">🔊</span>
+                                <span class="project-name">Sound Effects</span>
+                                <span class="project-xp">+35 XP</span>
+                            </div>
+                            <p class="project-desc">Add audio feedback!</p>
+                            <div class="project-prompt">
+                                <code>Add sound effects! Play a click sound when buttons are pressed, a success sound when I win, and a fail sound when I lose. Use the Web Audio API or audio elements.</code>
+                                <button class="copy-btn" data-copy='Add sound effects! Play a click sound when buttons are pressed, a success sound when I win, and a fail sound when I lose. Use the Web Audio API or audio elements.'>📋 Copy</button>
+                            </div>
+                            <div class="project-status" data-challenge="l4-quiz">
+                                <span class="status-icon">☐</span>
+                                <button class="challenge-complete-btn">Mark Complete</button>
+                            </div>
+                        </div>
+
+                        <div class="project-card" data-project="upgrade-save">
+                            <div class="project-header">
+                                <span class="project-icon">💾</span>
+                                <span class="project-name">Save Progress</span>
+                                <span class="project-xp">+40 XP</span>
+                            </div>
+                            <p class="project-desc">Remember my high scores!</p>
+                            <div class="project-prompt">
+                                <code>Add localStorage to save my progress! Save my high score and display it. When I come back, my record should still be there. Add a "Reset" button to clear saved data.</code>
+                                <button class="copy-btn" data-copy='Add localStorage to save my progress! Save my high score and display it. When I come back, my record should still be there. Add a "Reset" button to clear saved data.'>📋 Copy</button>
+                            </div>
+                            <div class="project-status" data-challenge="l4-assistant">
+                                <span class="status-icon">☐</span>
+                                <button class="challenge-complete-btn">Mark Complete</button>
+                            </div>
+                        </div>
+
+                        <div class="project-card" data-project="upgrade-mobile">
+                            <div class="project-header">
+                                <span class="project-icon">📱</span>
+                                <span class="project-name">Mobile Friendly</span>
+                                <span class="project-xp">+35 XP</span>
+                            </div>
+                            <p class="project-desc">Works on phones too!</p>
+                            <div class="project-prompt">
+                                <code>Make this work great on mobile phones! Buttons should be big enough to tap, text should be readable, and it should look good on small screens. Use responsive CSS.</code>
+                                <button class="copy-btn" data-copy='Make this work great on mobile phones! Buttons should be big enough to tap, text should be readable, and it should look good on small screens. Use responsive CSS.'>📋 Copy</button>
+                            </div>
+                            <div class="project-status" data-challenge="l4-madlibs">
+                                <span class="status-icon">☐</span>
+                                <button class="challenge-complete-btn">Mark Complete</button>
+                            </div>
+                        </div>
+
+                        <div class="project-card" data-project="upgrade-animations">
+                            <div class="project-header">
+                                <span class="project-icon">✨</span>
+                                <span class="project-name">Epic Animations</span>
+                                <span class="project-xp">+40 XP</span>
+                            </div>
+                            <p class="project-desc">Add confetti, shakes, and more!</p>
+                            <div class="project-prompt">
+                                <code>Add exciting animations! When I win, show confetti falling. When something big happens, shake the screen. Make numbers bounce when they update. Make it feel alive!</code>
+                                <button class="copy-btn" data-copy='Add exciting animations! When I win, show confetti falling. When something big happens, shake the screen. Make numbers bounce when they update. Make it feel alive!'>📋 Copy</button>
+                            </div>
+                            <div class="project-status" data-challenge="l4-timer">
+                                <span class="status-icon">☐</span>
+                                <button class="challenge-complete-btn">Mark Complete</button>
+                            </div>
+                        </div>
+
+                        <div class="project-card" data-project="upgrade-feature">
+                            <div class="project-header">
+                                <span class="project-icon">🚀</span>
+                                <span class="project-name">New Feature</span>
+                                <span class="project-xp">+50 XP</span>
+                            </div>
+                            <p class="project-desc">Add something totally new!</p>
+                            <div class="project-prompt">
+                                <code>Add a new feature I didn't have before! [Describe what you want - like "add a leaderboard", "add difficulty levels", "add a history of past rounds", or "add multiplayer mode"]</code>
+                                <button class="copy-btn" data-copy='Add a new feature I didn&apos;t have before! [Describe what you want - like "add a leaderboard", "add difficulty levels", "add a history of past rounds"]'>📋 Copy</button>
+                            </div>
+                            <div class="project-status" data-challenge="l4-rps">
+                                <span class="status-icon">☐</span>
+                                <button class="challenge-complete-btn">Mark Complete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h3>💡 Pro Prompting Tips</h3>
+                    <div class="tips-grid">
+                        <div class="tip-card">
+                            <span class="tip-icon">🎯</span>
+                            <h4>Be Specific</h4>
+                            <p>"Add a red glow" is better than "make it look cool"</p>
+                        </div>
+                        <div class="tip-card">
+                            <span class="tip-icon">1️⃣</span>
+                            <h4>One Thing at a Time</h4>
+                            <p>Ask for one change, test it, then ask for the next</p>
+                        </div>
+                        <div class="tip-card">
+                            <span class="tip-icon">🐛</span>
+                            <h4>Describe Problems</h4>
+                            <p>"The button doesn't work when I click it" helps Claude fix it</p>
+                        </div>
+                        <div class="tip-card">
+                            <span class="tip-icon">🎨</span>
+                            <h4>Share Examples</h4>
+                            <p>"Make it look like Fortnite's menu" gives Claude a clear target</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="level-complete-section" id="level4-complete" style="display: none;">
+                    <div class="complete-banner">
+                        <div class="complete-icon">🎉</div>
+                        <h3>LEVEL 4 COMPLETE!</h3>
+                        <p>You've unlocked the Master Prompter badge!</p>
+                        <div class="badge-earned">
+                            <div class="badge-icon">🎖️</div>
+                            <div class="badge-name">Master Prompter</div>
+                        </div>
+                        <button class="btn-primary btn-glow" id="next-level-4">
+                            Continue to BOSS LEVEL ➜
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Level 5: Boss Level -->
+            <section class="level-section" id="level-5">
+                <div class="level-header boss-header">
+                    <div class="boss-icon">👑</div>
+                    <div class="level-badge-large boss">BOSS LEVEL</div>
+                    <h2 class="level-title">Epic Web Apps</h2>
+                    <p class="level-subtitle">Build Something Amazing You Can Show Off!</p>
+                    <div class="level-rewards">
+                        <span class="reward">🏆 +500 XP</span>
+                        <span class="reward">💎 +100 Gems</span>
+                        <span class="reward">👑 CODE WIZARD TITLE</span>
+                    </div>
+                </div>
+
+                <div class="mission-briefing boss-briefing">
+                    <div class="briefing-header">
+                        <span class="briefing-icon">⚔️</span>
+                        <h3>FINAL MISSION</h3>
+                    </div>
+                    <div class="briefing-content">
+                        <p>This is it. The final boss. Time to build a <strong>REAL</strong> web app - something big enough to show your friends!</p>
+                        <p>Pick an epic project below, or create your own idea. These are bigger projects, so take your time!</p>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h3>🎮 EPIC WEB APP PROJECTS</h3>
+                    <p>Choose a project that sounds awesome to you!</p>
+
+                    <div class="epic-projects">
+                        <div class="epic-project-card" data-project="battle-royale">
+                            <div class="epic-header">
+                                <span class="epic-icon">🎯</span>
+                                <h4>Battle Royale Simulator</h4>
+                            </div>
+                            <p>Fortnite-style survival in the browser!</p>
+                            <div class="epic-features">
+                                <span>Loot system</span>
+                                <span>Storm circles</span>
+                                <span>Combat</span>
+                                <span>Inventory UI</span>
+                            </div>
+                            <div class="epic-prompt">
+                                <strong>Starter Prompt:</strong>
+                                <code>Create a web app "battle-royale.html" - a battle royale simulator game! Show a map grid where I can move around. Find loot (weapons, shields, meds) by exploring. A storm circle shrinks every 30 seconds. Fight AI enemies. Track health, shields, and inventory with a cool HUD. Dark theme with neon accents!</code>
+                                <button class="copy-btn" data-copy='Create a web app "battle-royale.html" - a battle royale simulator game! Show a map grid where I can move around. Find loot (weapons, shields, meds) by exploring. A storm circle shrinks every 30 seconds. Fight AI enemies. Track health, shields, and inventory with a cool HUD. Dark theme with neon accents!'>📋 Copy</button>
+                            </div>
+                            <div class="epic-tips">
+                                <strong>Pro Tips:</strong>
+                                <ul>
+                                    <li>"Add keyboard controls (WASD to move)"</li>
+                                    <li>"Make loot have rarity colors like Fortnite"</li>
+                                    <li>"Add a kill feed that shows eliminations"</li>
+                                </ul>
+                            </div>
+                            <div class="epic-status" data-challenge="l5-idea">
+                                <button class="challenge-complete-btn">Mark Complete</button>
+                            </div>
+                        </div>
+
+                        <div class="epic-project-card" data-project="brawler">
+                            <div class="epic-header">
+                                <span class="epic-icon">💥</span>
+                                <h4>Brawler Arena</h4>
+                            </div>
+                            <p>Brawl Stars-style character battles!</p>
+                            <div class="epic-features">
+                                <span>Character select</span>
+                                <span>Special abilities</span>
+                                <span>Health bars</span>
+                                <span>Battle animations</span>
+                            </div>
+                            <div class="epic-prompt">
+                                <strong>Starter Prompt:</strong>
+                                <code>Create a web app "brawler.html" - a turn-based battle game! Character select screen with 4 brawlers (Tank, Assassin, Healer, Sniper) - each with unique stats, a basic attack, and a special ability. Battle against an AI enemy. Show health bars, ability cooldowns, and battle log. Animated attacks!</code>
+                                <button class="copy-btn" data-copy='Create a web app "brawler.html" - a turn-based battle game! Character select screen with 4 brawlers (Tank, Assassin, Healer, Sniper) - each with unique stats, a basic attack, and a special ability. Battle against an AI enemy. Show health bars, ability cooldowns, and battle log. Animated attacks!'>📋 Copy</button>
+                            </div>
+                            <div class="epic-tips">
+                                <strong>Pro Tips:</strong>
+                                <ul>
+                                    <li>"Add character portraits and descriptions"</li>
+                                    <li>"Make health bars animate when taking damage"</li>
+                                    <li>"Add a 'Super' ability that charges up"</li>
+                                </ul>
+                            </div>
+                            <div class="epic-status" data-challenge="l5-described">
+                                <button class="challenge-complete-btn">Mark Complete</button>
+                            </div>
+                        </div>
+
+                        <div class="epic-project-card" data-project="crafting">
+                            <div class="epic-header">
+                                <span class="epic-icon">⛏️</span>
+                                <h4>Crafting & Inventory</h4>
+                            </div>
+                            <p>Minecraft-style crafting system!</p>
+                            <div class="epic-features">
+                                <span>Mining</span>
+                                <span>Crafting grid</span>
+                                <span>Inventory slots</span>
+                                <span>Recipes</span>
+                            </div>
+                            <div class="epic-prompt">
+                                <strong>Starter Prompt:</strong>
+                                <code>Create a web app "craft.html" - a Minecraft-inspired crafting game! Click to mine resources (wood, stone, iron, diamond, coal). Drag-and-drop inventory system. 3x3 crafting grid where I place items to craft tools and items. Show recipe book. Track total items crafted. Pixelated graphics style!</code>
+                                <button class="copy-btn" data-copy='Create a web app "craft.html" - a Minecraft-inspired crafting game! Click to mine resources (wood, stone, iron, diamond, coal). Drag-and-drop inventory system. 3x3 crafting grid where I place items to craft tools and items. Show recipe book. Track total items crafted. Pixelated graphics style!'>📋 Copy</button>
+                            </div>
+                            <div class="epic-tips">
+                                <strong>Pro Tips:</strong>
+                                <ul>
+                                    <li>"Add tool durability that decreases with use"</li>
+                                    <li>"Make better tools mine faster"</li>
+                                    <li>"Add achievements for first craft of each item"</li>
+                                </ul>
+                            </div>
+                            <div class="epic-status" data-challenge="l5-basic">
+                                <button class="challenge-complete-btn">Mark Complete</button>
+                            </div>
+                        </div>
+
+                        <div class="epic-project-card" data-project="lootbox">
+                            <div class="epic-header">
+                                <span class="epic-icon">🎁</span>
+                                <h4>Loot Box Simulator</h4>
+                            </div>
+                            <p>Open boxes, collect rare items!</p>
+                            <div class="epic-features">
+                                <span>Box animations</span>
+                                <span>Rarity tiers</span>
+                                <span>Collection</span>
+                                <span>Shop system</span>
+                            </div>
+                            <div class="epic-prompt">
+                                <strong>Starter Prompt:</strong>
+                                <code>Create a web app "lootbox.html" - a loot box opening simulator! Earn coins over time. Buy different box tiers (Common $10, Rare $50, Legendary $200). Epic unboxing animation! Items have rarity colors (gray→green→blue→purple→gold). Collection page showing all items and completion %. Satisfying effects!</code>
+                                <button class="copy-btn" data-copy='Create a web app "lootbox.html" - a loot box opening simulator! Earn coins over time. Buy different box tiers (Common $10, Rare $50, Legendary $200). Epic unboxing animation! Items have rarity colors (gray→green→blue→purple→gold). Collection page showing all items and completion %. Satisfying effects!'>📋 Copy</button>
+                            </div>
+                            <div class="epic-tips">
+                                <strong>Pro Tips:</strong>
+                                <ul>
+                                    <li>"Add a 'pity system' - guaranteed rare after X opens"</li>
+                                    <li>"Make duplicate items give coins back"</li>
+                                    <li>"Add sound effects for different rarities"</li>
+                                </ul>
+                            </div>
+                            <div class="epic-status" data-challenge="l5-features">
+                                <button class="challenge-complete-btn">Mark Complete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h3>💡 Or Create Your Own!</h3>
+                    <p>Have a different idea? Go for it! Here are some starters:</p>
+                    <div class="idea-grid">
+                        <div class="idea-card">
+                            <span>🏟️</span>
+                            <p>Tournament bracket maker</p>
+                        </div>
+                        <div class="idea-card">
+                            <span>🎯</span>
+                            <p>Click-speed aim trainer</p>
+                        </div>
+                        <div class="idea-card">
+                            <span>🗺️</span>
+                            <p>Random dungeon map generator</p>
+                        </div>
+                        <div class="idea-card">
+                            <span>📊</span>
+                            <p>Game stats dashboard</p>
+                        </div>
+                        <div class="idea-card">
+                            <span>🎭</span>
+                            <p>Character creator with export</p>
+                        </div>
+                        <div class="idea-card">
+                            <span>🏪</span>
+                            <p>Virtual pet / Tamagotchi</p>
+                        </div>
+                        <div class="idea-card">
+                            <span>🎖️</span>
+                            <p>Achievement unlock system</p>
+                        </div>
+                        <div class="idea-card">
+                            <span>💻</span>
+                            <p>Fake hacker terminal</p>
+                        </div>
+                    </div>
+
+                    <div class="idea-input-section">
+                        <label for="project-idea">Write your own project idea:</label>
+                        <textarea id="project-idea" placeholder="Describe your epic web app idea here... What does it do? What does it look like? What makes it cool?"></textarea>
+                        <button class="btn-secondary" id="save-idea">💾 Save Idea</button>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h3>🛠️ Pro Tips for Big Projects</h3>
+                    <div class="tips-grid">
+                        <div class="tip-card">
+                            <span class="tip-icon">🎯</span>
+                            <h4>Start Small</h4>
+                            <p>Get the basic version working first. Add features one at a time.</p>
+                        </div>
+                        <div class="tip-card">
+                            <span class="tip-icon">🐛</span>
+                            <h4>Test Often</h4>
+                            <p>Refresh and test after each change. Easier to fix bugs early!</p>
+                        </div>
+                        <div class="tip-card">
+                            <span class="tip-icon">💾</span>
+                            <h4>Save Progress</h4>
+                            <p>Ask Claude to add localStorage so your game saves between sessions.</p>
+                        </div>
+                        <div class="tip-card">
+                            <span class="tip-icon">🎨</span>
+                            <h4>Style Last</h4>
+                            <p>Get it working first, then make it pretty. Function before fashion!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h3>✅ Boss Level Checklist</h3>
+                    <div class="boss-checklist">
+                        <div class="boss-check" data-challenge="l5-picked">
+                            <span class="check-box">☐</span>
+                            <span>Picked a project (or created my own idea)</span>
+                            <button class="challenge-complete-btn small">✓</button>
+                        </div>
+                        <div class="boss-check" data-challenge="l5-basic-working">
+                            <span class="check-box">☐</span>
+                            <span>Got the basic version working in browser</span>
+                            <button class="challenge-complete-btn small">✓</button>
+                        </div>
+                        <div class="boss-check" data-challenge="l5-features-added">
+                            <span class="check-box">☐</span>
+                            <span>Added at least 2 extra features</span>
+                            <button class="challenge-complete-btn small">✓</button>
+                        </div>
+                        <div class="boss-check" data-challenge="l5-styled">
+                            <span class="check-box">☐</span>
+                            <span>Made it look good (colors, fonts, layout)</span>
+                            <button class="challenge-complete-btn small">✓</button>
+                        </div>
+                        <div class="boss-check" data-challenge="l5-showed">
+                            <span class="check-box">☐</span>
+                            <span>Showed it to someone!</span>
+                            <button class="challenge-complete-btn small">✓</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="level-complete-section" id="level5-complete" style="display: none;">
+                    <div class="complete-banner boss-complete">
+                        <div class="complete-icon">👑</div>
+                        <h3>QUEST COMPLETE!</h3>
+                        <p class="wizard-text">You have earned the title of...</p>
+                        <div class="wizard-title">CODE WIZARD</div>
+                        <div class="final-badges">
+                            <div class="badge-display">🎖️ Terminal Navigator</div>
+                            <div class="badge-display">🎖️ AI Whisperer</div>
+                            <div class="badge-display">🎖️ Code Creator</div>
+                            <div class="badge-display">🎖️ Master Prompter</div>
+                            <div class="badge-display">👑 Code Wizard</div>
+                        </div>
+                        <div class="certificate-section">
+                            <button class="btn-primary btn-glow" id="show-certificate">
+                                🏆 View Certificate
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Achievements Sidebar -->
+        <aside class="achievements-panel" id="achievements-panel">
+            <button class="achievements-toggle" id="achievements-toggle">🏆</button>
+            <div class="achievements-content">
+                <h3>🏆 Achievements</h3>
+                <div class="badges-list" id="badges-list">
+                    <div class="badge-item locked" data-badge="terminal">
+                        <span class="badge-icon">🎖️</span>
+                        <span class="badge-name">Terminal Navigator</span>
+                    </div>
+                    <div class="badge-item locked" data-badge="ai">
+                        <span class="badge-icon">🎖️</span>
+                        <span class="badge-name">AI Whisperer</span>
+                    </div>
+                    <div class="badge-item locked" data-badge="creator">
+                        <span class="badge-icon">🎖️</span>
+                        <span class="badge-name">Code Creator</span>
+                    </div>
+                    <div class="badge-item locked" data-badge="webdev">
+                        <span class="badge-icon">🎖️</span>
+                        <span class="badge-name">Master Prompter</span>
+                    </div>
+                    <div class="badge-item locked" data-badge="wizard">
+                        <span class="badge-icon">👑</span>
+                        <span class="badge-name">Code Wizard</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Certificate Modal -->
+    <div class="modal" id="certificate-modal">
+        <div class="modal-content certificate">
+            <button class="modal-close">&times;</button>
+            <div class="certificate-inner">
+                <div class="cert-border">
+                    <h2>🏆 CERTIFICATE OF COMPLETION 🏆</h2>
+                    <h1>CLAUDE QUEST: ADVENTURES WITH AI</h1>
+                    <p class="cert-text">This certifies that</p>
+                    <p class="cert-name" id="cert-player-name">PLAYER NAME</p>
+                    <p class="cert-text">has successfully completed the Claude Quest course and earned the title of</p>
+                    <p class="cert-title">⚔️ CODE WIZARD ⚔️</p>
+                    <div class="cert-badges">
+                        <span>🎖️</span><span>🎖️</span><span>🎖️</span><span>🎖️</span><span>👑</span>
+                    </div>
+                    <p class="cert-date">Completed: <span id="cert-date"></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- XP Popup -->
+    <div class="xp-popup" id="xp-popup">
+        <span class="xp-amount">+0 XP</span>
+    </div>
+
+    <!-- Level Up Modal -->
+    <div class="modal" id="levelup-modal">
+        <div class="modal-content levelup">
+            <div class="levelup-content">
+                <div class="levelup-icon">⬆️</div>
+                <h2>LEVEL UP!</h2>
+                <p>You are now level <span id="new-level">2</span></p>
+                <button class="btn-primary" id="levelup-close">AWESOME!</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
