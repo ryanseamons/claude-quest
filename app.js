@@ -107,14 +107,17 @@ function initializeEventListeners() {
         });
     });
 
-    // Platform tabs
+    // Platform tabs - scoped to parent container
     document.querySelectorAll('.platform-tab').forEach(tab => {
         tab.addEventListener('click', () => {
             const platform = tab.dataset.platform;
-            document.querySelectorAll('.platform-tab').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.platform-content').forEach(c => c.classList.remove('active'));
+            const container = tab.closest('.content-section') || tab.closest('.callout-section') || tab.parentElement.parentElement;
+
+            // Only affect tabs/content within this container
+            container.querySelectorAll('.platform-tab').forEach(t => t.classList.remove('active'));
+            container.querySelectorAll('.platform-content').forEach(c => c.classList.remove('active'));
             tab.classList.add('active');
-            document.querySelector(`.platform-content[data-platform="${platform}"]`)?.classList.add('active');
+            container.querySelector(`.platform-content[data-platform="${platform}"]`)?.classList.add('active');
         });
     });
 
