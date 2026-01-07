@@ -721,7 +721,7 @@ function handleCd(target) {
         if (targetLower === 'documents') {
             checkTerminalChallenge('l1-cd');
         }
-        if (targetLower === 'code-quest') {
+        if (targetLower === 'claude-quest') {
             checkTerminalChallenge('l1-navigate');
         }
 
@@ -755,10 +755,9 @@ function handleMkdir(name) {
         currentDir.contents.push(name);
     }
 
-    // Check challenges
-    if (name.toLowerCase() === 'code-quest') {
-        checkTerminalChallenge('l1-mkdir');
-    }
+    // Check challenges - creating any folder or specifically claude-quest
+    checkTerminalChallenge('l1-mkdir');
+
 
     return `Created directory: ${name}`;
 }
