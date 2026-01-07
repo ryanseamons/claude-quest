@@ -1,5 +1,15 @@
 # Claude Quest: Adventures with AI
 
+```
+    ╔═══════════════════════════════════════════════════════════╗
+    ║                                                           ║
+    ║    ⚔️  CLAUDE QUEST  ⚔️                                    ║
+    ║                                                           ║
+    ║    🎮 Gamer  ───►  🤖 AI Pro  ───►  🚀 Builder            ║
+    ║                                                           ║
+    ╚═══════════════════════════════════════════════════════════╝
+```
+
 An interactive course that teaches kids (ages 10+) how to use AI tools to build real projects. No prior coding experience needed.
 
 **Live Site:** [claudequest.ryanseamons.com](https://claudequest.ryanseamons.com)
@@ -62,9 +72,12 @@ open index.html
 ## Prerequisites
 
 - A computer (Mac, Windows, or Linux)
+- **A Claude account with Claude Code access** (required!)
 - Curiosity and willingness to experiment
-- ~30-60 minutes per level
-- A parent/guardian to help with Claude Code setup (Level 2)
+- ~10-15 minutes per level
+- A parent/guardian to help with initial setup (Level 2)
+
+> **Important:** This course uses [Claude Code](https://claude.com/download), Anthropic's AI coding tool. You'll need a Claude account with access to Claude Code to complete the projects.
 
 ---
 
