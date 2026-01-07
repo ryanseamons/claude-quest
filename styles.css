@@ -2251,3 +2251,14 @@ kbd {
     background: var(--neon-purple);
     color: white;
 }
+
+/* Version Tag */
+.version-tag {
+    position: fixed;
+    bottom: 8px;
+    right: 8px;
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    opacity: 0.4;
+    font-family: var(--font-mono);
+}
