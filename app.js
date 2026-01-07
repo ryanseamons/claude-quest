@@ -711,7 +711,7 @@ function handleCd(target) {
     }
 
     if (!matchedName) {
-        return `Error: No such directory: ${target}`;
+        return `Error: No folder named '${target}' here. Use 'ls' to see available folders.`;
     }
 
     // Check if the matched item is a directory
@@ -737,7 +737,7 @@ function handleCd(target) {
 
 function handleMkdir(name) {
     if (!name) {
-        return 'Error: Please specify a directory name';
+        return 'Error: Please specify a folder name. Try: mkdir claude-quest';
     }
 
     const newPath = `${terminalState.currentPath}/${name}`;

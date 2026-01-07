@@ -288,7 +288,7 @@
                             <div class="command-desc">
                                 <strong>Create a folder</strong>
                                 <p>"Make Directory" - creates a new folder</p>
-                                <p class="memory-trick">🧠 Memory trick: "MaKe DIRectory"</p>
+                                <p class="memory-trick">🧠 Example: <code>mkdir claude-quest</code> creates a folder called "claude-quest"</p>
                             </div>
                         </div>
 
@@ -375,7 +375,7 @@
                             </div>
                             <div class="challenge-info">
                                 <span class="challenge-title">Create Your Folder</span>
-                                <span class="challenge-desc">Use <code>mkdir claude-quest</code></span>
+                                <span class="challenge-desc">Type <code>mkdir claude-quest</code> and press Enter</span>
                             </div>
                             <div class="challenge-reward">+15 XP</div>
                         </div>
@@ -464,6 +464,11 @@
                         </ol>
                         <p>Or right-click the Start button and select "Terminal"</p>
                     </div>
+
+                    <div class="fun-fact" style="margin-top: 20px;">
+                        <span class="fact-icon">✨</span>
+                        <span><strong>Want a cooler terminal?</strong> Try <a href="https://www.warp.dev" target="_blank">Warp</a> - it's free, looks awesome, and has AI built in to help you! (Mac &amp; Linux)</span>
+                    </div>
                 </div>
 
                 <div class="content-section">
@@ -489,18 +494,25 @@
                                 </div>
 
                                 <div class="platform-content active" data-platform="mac-node">
-                                    <p><strong>Option A:</strong> Download from <a href="https://nodejs.org" target="_blank">nodejs.org</a> - click the big green "LTS" button, then run the installer.</p>
-                                    <p><strong>Option B:</strong> If you have Homebrew, run:</p>
-                                    <div class="code-block">
-                                        <code>brew install node</code>
-                                        <button class="copy-btn" data-copy="brew install node">📋 Copy</button>
-                                    </div>
+                                    <ol>
+                                        <li>Go to <a href="https://nodejs.org" target="_blank">nodejs.org</a></li>
+                                        <li>Click the big green <strong>"LTS"</strong> button (LTS = stable version)</li>
+                                        <li>Open the downloaded file (it ends in .pkg)</li>
+                                        <li>Click "Continue" through each step, then "Install"</li>
+                                        <li>Enter your Mac password when asked</li>
+                                        <li><strong>Close and reopen Terminal</strong>, then try <code>node --version</code> again</li>
+                                    </ol>
                                 </div>
 
                                 <div class="platform-content" data-platform="windows-node">
-                                    <p>Download from <a href="https://nodejs.org" target="_blank">nodejs.org</a> - click the big green "LTS" button, then run the installer.</p>
-                                    <p>Click "Next" through all the screens. The default options are fine!</p>
-                                    <p><strong>Important:</strong> After installing, close and reopen PowerShell.</p>
+                                    <ol>
+                                        <li>Go to <a href="https://nodejs.org" target="_blank">nodejs.org</a></li>
+                                        <li>Click the big green <strong>"LTS"</strong> button (LTS = stable version)</li>
+                                        <li>Open the downloaded file (it ends in .msi)</li>
+                                        <li>Click "Next" through each step (default options are fine)</li>
+                                        <li>Click "Install", then "Finish"</li>
+                                        <li><strong>Close and reopen PowerShell</strong>, then try <code>node --version</code> again</li>
+                                    </ol>
                                 </div>
                             </div>
                         </div>
@@ -515,6 +527,24 @@
                                     <button class="copy-btn" data-copy="npm install -g @anthropic-ai/claude-code">📋 Copy</button>
                                 </div>
                                 <p>This downloads Claude Code to your computer. It might take a minute!</p>
+
+                                <div class="parent-note">
+                                    <h4>⚠️ Getting a permission error?</h4>
+                                    <p>If you see "EACCES" or "permission denied", try one of these fixes:</p>
+                                    <p><strong>Mac/Linux - Option 1 (easiest):</strong> Add <code>sudo</code> before the command:</p>
+                                    <div class="code-block">
+                                        <code>sudo npm install -g @anthropic-ai/claude-code</code>
+                                        <button class="copy-btn" data-copy="sudo npm install -g @anthropic-ai/claude-code">📋 Copy</button>
+                                    </div>
+                                    <p>Enter your Mac password when asked (you won't see it typing - that's normal!).</p>
+                                    <p><strong>Mac/Linux - Option 2 (better long-term):</strong> Fix npm permissions:</p>
+                                    <div class="code-block">
+                                        <code>sudo chown -R $(whoami) ~/.npm</code>
+                                        <button class="copy-btn" data-copy="sudo chown -R $(whoami) ~/.npm">📋 Copy</button>
+                                    </div>
+                                    <p>Then try the install command again (without sudo).</p>
+                                </div>
+
                                 <div class="fun-fact">
                                     <span class="fact-icon">💡</span>
                                     <span>npm stands for "Node Package Manager" - it's like an app store for coding tools!</span>
@@ -1463,7 +1493,7 @@
         </div>
     </div>
 
-    <div class="version-tag">v1.0.2</div>
+    <div class="version-tag">v1.0.3</div>
     <script src="app.js"></script>
 </body>
 </html>
