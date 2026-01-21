@@ -77,6 +77,24 @@
                 <span class="nav-text">Boss</span>
                 <span class="lock-icon">🔒</span>
             </button>
+            <div class="nav-divider" id="season2-divider" style="display: none;">
+                <span>Season 2</span>
+            </div>
+            <button class="nav-btn locked" data-level="6" id="nav-6" style="display: none;">
+                <span class="nav-icon">🕹️</span>
+                <span class="nav-text">Arcade</span>
+                <span class="lock-icon">🔒</span>
+            </button>
+            <button class="nav-btn locked" data-level="7" id="nav-7" style="display: none;">
+                <span class="nav-icon">🚀</span>
+                <span class="nav-text">Space</span>
+                <span class="lock-icon">🔒</span>
+            </button>
+            <button class="nav-btn locked" data-level="8" id="nav-8" style="display: none;">
+                <span class="nav-icon">🏰</span>
+                <span class="nav-text">Fantasy</span>
+                <span class="lock-icon">🔒</span>
+            </button>
         </nav>
 
         <!-- Main Content Area -->
@@ -1419,6 +1437,494 @@
                                 🏆 View Certificate
                             </button>
                         </div>
+                        <div class="season2-unlock">
+                            <p class="season2-tease">But wait... your adventure isn't over!</p>
+                            <button class="btn-primary btn-glow season2-btn" id="unlock-season2">
+                                🌟 Unlock Season 2 ➜
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================================================
+                 SEASON 2: NEW HORIZONS
+                 ================================================ -->
+
+            <!-- Level 6: Code Arcade -->
+            <section class="level-section" id="level-6">
+                <div class="level-header season2-header">
+                    <span class="season-badge">SEASON 2</span>
+                    <span class="level-badge">LEVEL 6</span>
+                    <h2>Code Arcade</h2>
+                    <p class="level-subtitle">Build Classic Games That Never Get Old!</p>
+                    <div class="level-rewards">
+                        <span class="reward">🏆 +300 XP</span>
+                        <span class="reward">💎 +40 Gems</span>
+                        <span class="reward">🎖️ Arcade Master Badge</span>
+                    </div>
+                </div>
+
+                <div class="content-section callout-section">
+                    <h3>🕹️ WELCOME TO THE ARCADE</h3>
+                    <p>Time to level up your skills by building the games you love to play! Each of these classic arcade games will teach you new tricks.</p>
+                    <div class="fun-fact">
+                        <span class="fact-icon">💡</span>
+                        <span>Pro tip: Start simple, then add features. A basic game that works is better than a fancy game that doesn't!</span>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h3>🎮 ARCADE CLASSICS</h3>
+                    <p>Build at least 3 of these 6 legendary games to complete the level!</p>
+
+                    <div class="project-cards">
+                        <div class="project-card" data-project="snake">
+                            <div class="project-header">
+                                <span class="project-icon">🐍</span>
+                                <span class="project-name">Snake Game</span>
+                                <span class="project-xp">+50 XP</span>
+                            </div>
+                            <p class="project-desc">The classic! Eat food, grow longer, don't hit yourself!</p>
+                            <div class="project-prompt">
+                                <code>Create a Snake game! Arrow keys to move, eat the red food to grow, game over if you hit yourself or the walls. Show the score and a "Play Again" button. Make the snake green and the food red!</code>
+                                <button class="copy-btn" data-copy='Create a Snake game! Arrow keys to move, eat the red food to grow, game over if you hit yourself or the walls. Show the score and a "Play Again" button. Make the snake green and the food red!'>📋 Copy</button>
+                            </div>
+                            <div class="project-status" data-challenge="l6-snake">
+                                <span class="status-icon">☐</span>
+                                <button class="challenge-complete-btn">Mark Complete</button>
+                            </div>
+                        </div>
+
+                        <div class="project-card" data-project="pong">
+                            <div class="project-header">
+                                <span class="project-icon">🏓</span>
+                                <span class="project-name">Pong</span>
+                                <span class="project-xp">+50 XP</span>
+                            </div>
+                            <p class="project-desc">The OG video game! Paddle vs paddle action!</p>
+                            <div class="project-prompt">
+                                <code>Create Pong! Two paddles (W/S for left, Up/Down for right), a bouncing ball, first to 5 points wins. Add sound effects when the ball hits paddles. Show the score at the top!</code>
+                                <button class="copy-btn" data-copy='Create Pong! Two paddles (W/S for left, Up/Down for right), a bouncing ball, first to 5 points wins. Add sound effects when the ball hits paddles. Show the score at the top!'>📋 Copy</button>
+                            </div>
+                            <div class="project-status" data-challenge="l6-pong">
+                                <span class="status-icon">☐</span>
+                                <button class="challenge-complete-btn">Mark Complete</button>
+                            </div>
+                        </div>
+
+                        <div class="project-card" data-project="breakout">
+                            <div class="project-header">
+                                <span class="project-icon">🧱</span>
+                                <span class="project-name">Brick Breaker</span>
+                                <span class="project-xp">+60 XP</span>
+                            </div>
+                            <p class="project-desc">Smash all the bricks with your bouncing ball!</p>
+                            <div class="project-prompt">
+                                <code>Create Brick Breaker! Move paddle with mouse/arrows, bounce ball to break colorful bricks. Different colored bricks = different points. 3 lives, show score. Celebration when all bricks are gone!</code>
+                                <button class="copy-btn" data-copy='Create Brick Breaker! Move paddle with mouse/arrows, bounce ball to break colorful bricks. Different colored bricks = different points. 3 lives, show score. Celebration when all bricks are gone!'>📋 Copy</button>
+                            </div>
+                            <div class="project-status" data-challenge="l6-breakout">
+                                <span class="status-icon">☐</span>
+                                <button class="challenge-complete-btn">Mark Complete</button>
+                            </div>
+                        </div>
+
+                        <div class="project-card" data-project="whackamole">
+                            <div class="project-header">
+                                <span class="project-icon">🔨</span>
+                                <span class="project-name">Whack-a-Mole</span>
+                                <span class="project-xp">+45 XP</span>
+                            </div>
+                            <p class="project-desc">Quick reflexes! Click the moles before they hide!</p>
+                            <div class="project-prompt">
+                                <code>Create Whack-a-Mole! 9 holes in a grid, moles pop up randomly for 1 second. Click to whack them for points. 30 second timer. Show score and play "bonk" sound on hit. High score tracker!</code>
+                                <button class="copy-btn" data-copy='Create Whack-a-Mole! 9 holes in a grid, moles pop up randomly for 1 second. Click to whack them for points. 30 second timer. Show score and play "bonk" sound on hit. High score tracker!'>📋 Copy</button>
+                            </div>
+                            <div class="project-status" data-challenge="l6-whackamole">
+                                <span class="status-icon">☐</span>
+                                <button class="challenge-complete-btn">Mark Complete</button>
+                            </div>
+                        </div>
+
+                        <div class="project-card" data-project="memory">
+                            <div class="project-header">
+                                <span class="project-icon">🧠</span>
+                                <span class="project-name">Memory Match</span>
+                                <span class="project-xp">+45 XP</span>
+                            </div>
+                            <p class="project-desc">Flip cards and find matching pairs!</p>
+                            <div class="project-prompt">
+                                <code>Create Memory Match! 16 cards (8 pairs) with emoji on them. Click to flip, match 2 to keep them revealed. Count moves and time. Shuffle on new game. Celebration animation when you win!</code>
+                                <button class="copy-btn" data-copy='Create Memory Match! 16 cards (8 pairs) with emoji on them. Click to flip, match 2 to keep them revealed. Count moves and time. Shuffle on new game. Celebration animation when you win!'>📋 Copy</button>
+                            </div>
+                            <div class="project-status" data-challenge="l6-memory">
+                                <span class="status-icon">☐</span>
+                                <button class="challenge-complete-btn">Mark Complete</button>
+                            </div>
+                        </div>
+
+                        <div class="project-card" data-project="typing">
+                            <div class="project-header">
+                                <span class="project-icon">⌨️</span>
+                                <span class="project-name">Type Racer</span>
+                                <span class="project-xp">+50 XP</span>
+                            </div>
+                            <p class="project-desc">How fast can you type? Race against the clock!</p>
+                            <div class="project-prompt">
+                                <code>Create a typing speed test! Show a paragraph to type, highlight correct/wrong letters as you type. Calculate WPM (words per minute) and accuracy. Multiple difficulty levels with different texts. Save best score!</code>
+                                <button class="copy-btn" data-copy='Create a typing speed test! Show a paragraph to type, highlight correct/wrong letters as you type. Calculate WPM (words per minute) and accuracy. Multiple difficulty levels with different texts. Save best score!'>📋 Copy</button>
+                            </div>
+                            <div class="project-status" data-challenge="l6-typing">
+                                <span class="status-icon">☐</span>
+                                <button class="challenge-complete-btn">Mark Complete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h3>🔥 BONUS CHALLENGES</h3>
+                    <p>Make your arcade games even better with these upgrades:</p>
+                    <div class="upgrade-ideas">
+                        <div class="upgrade">"Add a pause button that freezes the game"</div>
+                        <div class="upgrade">"Add increasing difficulty as the score goes up"</div>
+                        <div class="upgrade">"Add a local high score leaderboard"</div>
+                        <div class="upgrade">"Add power-ups that appear randomly"</div>
+                    </div>
+                </div>
+
+                <div class="level-complete-section" id="level6-complete" style="display: none;">
+                    <div class="complete-banner">
+                        <div class="complete-icon">🕹️</div>
+                        <h3>LEVEL 6 COMPLETE!</h3>
+                        <p>You've unlocked the Arcade Master badge!</p>
+                        <div class="badge-earned">
+                            <div class="badge-icon">🎖️</div>
+                            <div class="badge-name">Arcade Master</div>
+                        </div>
+                        <button class="btn-primary btn-glow" id="next-level-6">
+                            Continue to Level 7 ➜
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Level 7: Space Explorer -->
+            <section class="level-section" id="level-7">
+                <div class="level-header season2-header">
+                    <span class="season-badge">SEASON 2</span>
+                    <span class="level-badge">LEVEL 7</span>
+                    <h2>Space Explorer</h2>
+                    <p class="level-subtitle">Launch Into Cosmic Coding Adventures!</p>
+                    <div class="level-rewards">
+                        <span class="reward">🏆 +350 XP</span>
+                        <span class="reward">💎 +50 Gems</span>
+                        <span class="reward">🎖️ Space Cadet Badge</span>
+                    </div>
+                </div>
+
+                <div class="content-section callout-section">
+                    <h3>🚀 MISSION BRIEFING</h3>
+                    <p>Welcome to Space Command, cadet! Your mission: build incredible space-themed projects that would make NASA jealous.</p>
+                    <div class="fun-fact">
+                        <span class="fact-icon">🌟</span>
+                        <span>Fun fact: The code running on the Mars rovers is simpler than some video games. You've got this!</span>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h3>🛸 SPACE PROJECTS</h3>
+                    <p>Complete at least 3 of these 6 cosmic creations!</p>
+
+                    <div class="project-cards">
+                        <div class="project-card" data-project="asteroid">
+                            <div class="project-header">
+                                <span class="project-icon">☄️</span>
+                                <span class="project-name">Asteroid Blaster</span>
+                                <span class="project-xp">+60 XP</span>
+                            </div>
+                            <p class="project-desc">Defend Earth from incoming space rocks!</p>
+                            <div class="project-prompt">
+                                <code>Create Asteroids! Spaceship in center, rotate with arrows, thrust forward with up, shoot with space. Asteroids drift across screen, break into smaller pieces when shot. Score points, 3 lives!</code>
+                                <button class="copy-btn" data-copy='Create Asteroids! Spaceship in center, rotate with arrows, thrust forward with up, shoot with space. Asteroids drift across screen, break into smaller pieces when shot. Score points, 3 lives!'>📋 Copy</button>
+                            </div>
+                            <div class="project-status" data-challenge="l7-asteroid">
+                                <span class="status-icon">☐</span>
+                                <button class="challenge-complete-btn">Mark Complete</button>
+                            </div>
+                        </div>
+
+                        <div class="project-card" data-project="planets">
+                            <div class="project-header">
+                                <span class="project-icon">🪐</span>
+                                <span class="project-name">Solar System</span>
+                                <span class="project-xp">+55 XP</span>
+                            </div>
+                            <p class="project-desc">Interactive solar system explorer!</p>
+                            <div class="project-prompt">
+                                <code>Create an interactive solar system! Sun in center, planets orbiting at different speeds. Click a planet to see facts (size, distance from sun, moons). Zoom in/out controls. Make orbits visible with dotted lines!</code>
+                                <button class="copy-btn" data-copy='Create an interactive solar system! Sun in center, planets orbiting at different speeds. Click a planet to see facts (size, distance from sun, moons). Zoom in/out controls. Make orbits visible with dotted lines!'>📋 Copy</button>
+                            </div>
+                            <div class="project-status" data-challenge="l7-planets">
+                                <span class="status-icon">☐</span>
+                                <button class="challenge-complete-btn">Mark Complete</button>
+                            </div>
+                        </div>
+
+                        <div class="project-card" data-project="rocket">
+                            <div class="project-header">
+                                <span class="project-icon">🚀</span>
+                                <span class="project-name">Rocket Launch Sim</span>
+                                <span class="project-xp">+50 XP</span>
+                            </div>
+                            <p class="project-desc">3... 2... 1... LIFTOFF!</p>
+                            <div class="project-prompt">
+                                <code>Create a rocket launch simulator! Countdown from 10 with dramatic effects. Rocket launches with fire animation, camera follows it up. Show altitude, speed, fuel. Stage separation at certain heights. Land on the moon!</code>
+                                <button class="copy-btn" data-copy='Create a rocket launch simulator! Countdown from 10 with dramatic effects. Rocket launches with fire animation, camera follows it up. Show altitude, speed, fuel. Stage separation at certain heights. Land on the moon!'>📋 Copy</button>
+                            </div>
+                            <div class="project-status" data-challenge="l7-rocket">
+                                <span class="status-icon">☐</span>
+                                <button class="challenge-complete-btn">Mark Complete</button>
+                            </div>
+                        </div>
+
+                        <div class="project-card" data-project="alien">
+                            <div class="project-header">
+                                <span class="project-icon">👾</span>
+                                <span class="project-name">Space Invaders</span>
+                                <span class="project-xp">+60 XP</span>
+                            </div>
+                            <p class="project-desc">Classic alien defense! Pew pew!</p>
+                            <div class="project-prompt">
+                                <code>Create Space Invaders! Grid of aliens moving side-to-side and down. Player ship at bottom, move with arrows, shoot with space. Aliens shoot back randomly. Shields for cover. Waves get faster!</code>
+                                <button class="copy-btn" data-copy='Create Space Invaders! Grid of aliens moving side-to-side and down. Player ship at bottom, move with arrows, shoot with space. Aliens shoot back randomly. Shields for cover. Waves get faster!'>📋 Copy</button>
+                            </div>
+                            <div class="project-status" data-challenge="l7-alien">
+                                <span class="status-icon">☐</span>
+                                <button class="challenge-complete-btn">Mark Complete</button>
+                            </div>
+                        </div>
+
+                        <div class="project-card" data-project="starmap">
+                            <div class="project-header">
+                                <span class="project-icon">✨</span>
+                                <span class="project-name">Star Map</span>
+                                <span class="project-xp">+45 XP</span>
+                            </div>
+                            <p class="project-desc">Navigate the night sky!</p>
+                            <div class="project-prompt">
+                                <code>Create a star map! Dark background with twinkling stars. Show major constellations (Big Dipper, Orion, etc.) - click to highlight and see the name and mythology. Add a search feature to find constellations!</code>
+                                <button class="copy-btn" data-copy='Create a star map! Dark background with twinkling stars. Show major constellations (Big Dipper, Orion, etc.) - click to highlight and see the name and mythology. Add a search feature to find constellations!'>📋 Copy</button>
+                            </div>
+                            <div class="project-status" data-challenge="l7-starmap">
+                                <span class="status-icon">☐</span>
+                                <button class="challenge-complete-btn">Mark Complete</button>
+                            </div>
+                        </div>
+
+                        <div class="project-card" data-project="spaceship">
+                            <div class="project-header">
+                                <span class="project-icon">🛸</span>
+                                <span class="project-name">Spaceship Designer</span>
+                                <span class="project-xp">+55 XP</span>
+                            </div>
+                            <p class="project-desc">Design your own spacecraft!</p>
+                            <div class="project-prompt">
+                                <code>Create a spaceship builder! Drag and drop parts: cockpit, wings, engines, weapons, thrusters. Calculate ship stats (speed, firepower, fuel). Color customization. Save/load designs. "Launch" animation when done!</code>
+                                <button class="copy-btn" data-copy='Create a spaceship builder! Drag and drop parts: cockpit, wings, engines, weapons, thrusters. Calculate ship stats (speed, firepower, fuel). Color customization. Save/load designs. "Launch" animation when done!'>📋 Copy</button>
+                            </div>
+                            <div class="project-status" data-challenge="l7-spaceship">
+                                <span class="status-icon">☐</span>
+                                <button class="challenge-complete-btn">Mark Complete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="level-complete-section" id="level7-complete" style="display: none;">
+                    <div class="complete-banner">
+                        <div class="complete-icon">🚀</div>
+                        <h3>LEVEL 7 COMPLETE!</h3>
+                        <p>You've earned the Space Cadet badge!</p>
+                        <div class="badge-earned">
+                            <div class="badge-icon">🎖️</div>
+                            <div class="badge-name">Space Cadet</div>
+                        </div>
+                        <button class="btn-primary btn-glow" id="next-level-7">
+                            Continue to Level 8 ➜
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Level 8: Fantasy Quest -->
+            <section class="level-section" id="level-8">
+                <div class="level-header season2-header">
+                    <span class="season-badge">SEASON 2</span>
+                    <span class="level-badge">LEVEL 8</span>
+                    <h2>Fantasy Quest</h2>
+                    <p class="level-subtitle">Forge Legendary RPG Adventures!</p>
+                    <div class="level-rewards">
+                        <span class="reward">🏆 +400 XP</span>
+                        <span class="reward">💎 +60 Gems</span>
+                        <span class="reward">👑 Legendary Coder Badge</span>
+                    </div>
+                </div>
+
+                <div class="content-section callout-section">
+                    <h3>⚔️ ENTER THE REALM</h3>
+                    <p>Welcome, brave coder! In this realm, you'll forge RPG systems, magical worlds, and epic adventures. This is where true legends are made!</p>
+                    <div class="fun-fact">
+                        <span class="fact-icon">🏰</span>
+                        <span>Many professional game developers started by making exactly these kinds of projects. You're learning real skills!</span>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h3>🗡️ LEGENDARY PROJECTS</h3>
+                    <p>Complete at least 3 of these 6 epic creations to become a Legendary Coder!</p>
+
+                    <div class="project-cards">
+                        <div class="project-card" data-project="character">
+                            <div class="project-header">
+                                <span class="project-icon">🧙</span>
+                                <span class="project-name">Character Creator</span>
+                                <span class="project-xp">+55 XP</span>
+                            </div>
+                            <p class="project-desc">Design your hero's look and stats!</p>
+                            <div class="project-prompt">
+                                <code>Create an RPG character creator! Choose race (human, elf, dwarf, orc), class (warrior, mage, rogue, healer). Customize appearance with dropdowns. Distribute stat points (STR, DEX, INT, etc.). Generate a character portrait and stat card!</code>
+                                <button class="copy-btn" data-copy='Create an RPG character creator! Choose race (human, elf, dwarf, orc), class (warrior, mage, rogue, healer). Customize appearance with dropdowns. Distribute stat points (STR, DEX, INT, etc.). Generate a character portrait and stat card!'>📋 Copy</button>
+                            </div>
+                            <div class="project-status" data-challenge="l8-character">
+                                <span class="status-icon">☐</span>
+                                <button class="challenge-complete-btn">Mark Complete</button>
+                            </div>
+                        </div>
+
+                        <div class="project-card" data-project="battle">
+                            <div class="project-header">
+                                <span class="project-icon">⚔️</span>
+                                <span class="project-name">Turn-Based Battle</span>
+                                <span class="project-xp">+70 XP</span>
+                            </div>
+                            <p class="project-desc">Epic combat system with strategy!</p>
+                            <div class="project-prompt">
+                                <code>Create a turn-based battle system! Hero vs Monster. Choose actions: Attack, Defend, Magic, Item. Health bars, damage numbers that float up. Critical hits with special effects. Victory/defeat screens with XP rewards!</code>
+                                <button class="copy-btn" data-copy='Create a turn-based battle system! Hero vs Monster. Choose actions: Attack, Defend, Magic, Item. Health bars, damage numbers that float up. Critical hits with special effects. Victory/defeat screens with XP rewards!'>📋 Copy</button>
+                            </div>
+                            <div class="project-status" data-challenge="l8-battle">
+                                <span class="status-icon">☐</span>
+                                <button class="challenge-complete-btn">Mark Complete</button>
+                            </div>
+                        </div>
+
+                        <div class="project-card" data-project="inventory">
+                            <div class="project-header">
+                                <span class="project-icon">🎒</span>
+                                <span class="project-name">Inventory System</span>
+                                <span class="project-xp">+55 XP</span>
+                            </div>
+                            <p class="project-desc">Manage your loot and gear!</p>
+                            <div class="project-prompt">
+                                <code>Create an RPG inventory! Grid of slots, drag items to rearrange. Item types: weapons, armor, potions, quest items. Click to see item stats and description. Equip slots for head/chest/weapon. Gold counter. Sell items to shop!</code>
+                                <button class="copy-btn" data-copy='Create an RPG inventory! Grid of slots, drag items to rearrange. Item types: weapons, armor, potions, quest items. Click to see item stats and description. Equip slots for head/chest/weapon. Gold counter. Sell items to shop!'>📋 Copy</button>
+                            </div>
+                            <div class="project-status" data-challenge="l8-inventory">
+                                <span class="status-icon">☐</span>
+                                <button class="challenge-complete-btn">Mark Complete</button>
+                            </div>
+                        </div>
+
+                        <div class="project-card" data-project="dungeon">
+                            <div class="project-header">
+                                <span class="project-icon">🏰</span>
+                                <span class="project-name">Dungeon Crawler</span>
+                                <span class="project-xp">+75 XP</span>
+                            </div>
+                            <p class="project-desc">Explore procedural dungeons!</p>
+                            <div class="project-prompt">
+                                <code>Create a dungeon crawler! Grid-based map, move with arrows. Fog of war (only see nearby). Random rooms with treasures or monsters. Simple combat on encounter. Find the exit to go deeper. Track dungeon level and score!</code>
+                                <button class="copy-btn" data-copy='Create a dungeon crawler! Grid-based map, move with arrows. Fog of war (only see nearby). Random rooms with treasures or monsters. Simple combat on encounter. Find the exit to go deeper. Track dungeon level and score!'>📋 Copy</button>
+                            </div>
+                            <div class="project-status" data-challenge="l8-dungeon">
+                                <span class="status-icon">☐</span>
+                                <button class="challenge-complete-btn">Mark Complete</button>
+                            </div>
+                        </div>
+
+                        <div class="project-card" data-project="quest">
+                            <div class="project-header">
+                                <span class="project-icon">📜</span>
+                                <span class="project-name">Quest Log</span>
+                                <span class="project-xp">+50 XP</span>
+                            </div>
+                            <p class="project-desc">Track your heroic adventures!</p>
+                            <div class="project-prompt">
+                                <code>Create a quest log system! List of quests with titles, descriptions, objectives. Mark objectives complete with checkboxes. Quest categories: Main, Side, Daily. Show rewards (XP, gold, items). Completed quests section!</code>
+                                <button class="copy-btn" data-copy='Create a quest log system! List of quests with titles, descriptions, objectives. Mark objectives complete with checkboxes. Quest categories: Main, Side, Daily. Show rewards (XP, gold, items). Completed quests section!'>📋 Copy</button>
+                            </div>
+                            <div class="project-status" data-challenge="l8-quest">
+                                <span class="status-icon">☐</span>
+                                <button class="challenge-complete-btn">Mark Complete</button>
+                            </div>
+                        </div>
+
+                        <div class="project-card" data-project="magic">
+                            <div class="project-header">
+                                <span class="project-icon">🔮</span>
+                                <span class="project-name">Spell Crafting</span>
+                                <span class="project-xp">+60 XP</span>
+                            </div>
+                            <p class="project-desc">Combine elements to create magic!</p>
+                            <div class="project-prompt">
+                                <code>Create a spell crafting system! Combine elements (fire, water, earth, air, light, dark) to discover spells. Fire+Air=Fireball, Water+Earth=Mud, etc. Show spell effects with animations. Spellbook to track discovered spells. Secret combinations to find!</code>
+                                <button class="copy-btn" data-copy='Create a spell crafting system! Combine elements (fire, water, earth, air, light, dark) to discover spells. Fire+Air=Fireball, Water+Earth=Mud, etc. Show spell effects with animations. Spellbook to track discovered spells. Secret combinations to find!'>📋 Copy</button>
+                            </div>
+                            <div class="project-status" data-challenge="l8-magic">
+                                <span class="status-icon">☐</span>
+                                <button class="challenge-complete-btn">Mark Complete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h3>🏆 ULTIMATE CHALLENGE</h3>
+                    <p>Ready for the ultimate test? Combine multiple systems into one epic game!</p>
+                    <div class="ultimate-challenge">
+                        <div class="challenge-card epic">
+                            <h4>🐉 THE DRAGON SLAYER</h4>
+                            <p>Create a complete mini-RPG: Character creation → Explore dungeon → Find items → Battle dragon boss!</p>
+                            <div class="project-prompt">
+                                <code>Create "Dragon Slayer" - a complete mini RPG! Start with character creation (name, class). Explore 5 dungeon rooms finding items and fighting small monsters to level up. Final room has a dragon boss. Turn-based combat. Win = celebration! Lose = try again!</code>
+                                <button class="copy-btn" data-copy='Create "Dragon Slayer" - a complete mini RPG! Start with character creation (name, class). Explore 5 dungeon rooms finding items and fighting small monsters to level up. Final room has a dragon boss. Turn-based combat. Win = celebration! Lose = try again!'>📋 Copy</button>
+                            </div>
+                            <div class="project-status" data-challenge="l8-dragon">
+                                <span class="status-icon">☐</span>
+                                <button class="challenge-complete-btn">Mark Complete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="level-complete-section" id="level8-complete" style="display: none;">
+                    <div class="complete-banner boss-complete">
+                        <div class="complete-icon">👑</div>
+                        <h3>🎉 SEASON 2 COMPLETE! 🎉</h3>
+                        <p class="wizard-text">You have achieved the legendary title of...</p>
+                        <div class="wizard-title">LEGENDARY CODER</div>
+                        <div class="final-badges">
+                            <div class="badge-display">🕹️ Arcade Master</div>
+                            <div class="badge-display">🚀 Space Cadet</div>
+                            <div class="badge-display">👑 Legendary Coder</div>
+                        </div>
+                        <p class="season2-congrats">You've built games, explored space, and conquered fantasy realms. You're not just coding anymore - you're creating worlds!</p>
+                        <div class="whats-next">
+                            <h4>What's Next?</h4>
+                            <p>Keep building! Try combining projects, add multiplayer, or design your own original games. The only limit is your imagination!</p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -1449,6 +1955,21 @@
                     <div class="badge-item locked" data-badge="wizard">
                         <span class="badge-icon">👑</span>
                         <span class="badge-name">Code Wizard</span>
+                    </div>
+                    <div class="season2-badge-divider" style="display: none;" id="s2-badge-divider">
+                        <span>Season 2</span>
+                    </div>
+                    <div class="badge-item locked" data-badge="arcade" style="display: none;">
+                        <span class="badge-icon">🕹️</span>
+                        <span class="badge-name">Arcade Master</span>
+                    </div>
+                    <div class="badge-item locked" data-badge="space" style="display: none;">
+                        <span class="badge-icon">🚀</span>
+                        <span class="badge-name">Space Cadet</span>
+                    </div>
+                    <div class="badge-item locked" data-badge="legendary" style="display: none;">
+                        <span class="badge-icon">👑</span>
+                        <span class="badge-name">Legendary Coder</span>
                     </div>
                 </div>
             </div>

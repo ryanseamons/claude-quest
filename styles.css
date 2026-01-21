@@ -2262,3 +2262,130 @@ kbd {
     opacity: 0.4;
     font-family: var(--font-mono);
 }
+
+/* ===========================================
+   SEASON 2 STYLES
+   =========================================== */
+
+/* Season 2 Nav Divider */
+.nav-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0.5rem 0;
+    margin: 0.5rem 0;
+    border-top: 1px solid var(--border-color);
+}
+
+.nav-divider span {
+    font-family: var(--font-display);
+    font-size: 0.65rem;
+    color: var(--neon-purple);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* Season 2 Header Badge */
+.season-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--neon-purple), var(--neon-pink));
+    color: white;
+    font-family: var(--font-display);
+    font-size: 0.6rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.1em;
+}
+
+.season2-header {
+    background: linear-gradient(135deg,
+        rgba(139, 92, 246, 0.1),
+        rgba(219, 97, 162, 0.1));
+    border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+/* Season 2 Unlock Section */
+.season2-unlock {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px dashed var(--border-color);
+    text-align: center;
+}
+
+.season2-tease {
+    color: var(--neon-purple);
+    font-family: var(--font-display);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.season2-btn {
+    background: linear-gradient(135deg, var(--neon-purple), var(--neon-pink));
+    border: none;
+    animation: pulse-glow 2s infinite;
+}
+
+@keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 10px rgba(139, 92, 246, 0.4); }
+    50% { box-shadow: 0 0 25px rgba(139, 92, 246, 0.7); }
+}
+
+/* Season 2 Badge Divider */
+.season2-badge-divider {
+    width: 100%;
+    padding: 0.5rem 0;
+    margin: 0.75rem 0;
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.season2-badge-divider span {
+    font-family: var(--font-display);
+    font-size: 0.55rem;
+    color: var(--neon-purple);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* Epic Challenge Card */
+.challenge-card.epic,
+.ultimate-challenge .challenge-card {
+    background: linear-gradient(135deg,
+        rgba(219, 97, 162, 0.15),
+        rgba(139, 92, 246, 0.15));
+    border: 2px solid var(--neon-purple);
+}
+
+.ultimate-challenge h4 {
+    color: var(--neon-purple);
+    font-family: var(--font-display);
+}
+
+/* Season 2 Congrats */
+.season2-congrats {
+    color: var(--text-secondary);
+    margin: 1.5rem 0;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.whats-next {
+    background: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-top: 2rem;
+    border: 1px solid var(--border-color);
+}
+
+.whats-next h4 {
+    color: var(--neon-green);
+    font-family: var(--font-display);
+    margin-bottom: 0.75rem;
+}
+
+.whats-next p {
+    color: var(--text-secondary);
+    margin: 0;
+}

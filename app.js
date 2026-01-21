@@ -21,7 +21,8 @@ let gameState = {
     unlockedBadges: [],
     projectIdea: '',
     soundEnabled: true,
-    firstVisit: true
+    firstVisit: true,
+    season2Unlocked: false
 };
 
 // ===========================================
@@ -78,6 +79,79 @@ function initializeUI() {
 
     // Check for level completions
     checkAllLevelCompletions();
+
+    // Ensure completed levels have their next level unlocked and show continue button
+    restoreCompletedLevelSections();
+}
+
+function restoreCompletedLevelSections() {
+    // For each completed level, ensure the next level is unlocked
+    // and show the level-complete section if user is on that level
+    const levelUnlockMap = {
+        '1': '2',
+        '2': '3',
+        '3': '4',
+        '4': '5',
+        '6': '7',
+        '7': '8'
+    };
+
+    gameState.completedLevels.forEach(levelNum => {
+        const nextLevel = levelUnlockMap[levelNum];
+
+        // Unlock the next level if there is one and it's not already unlocked
+        if (nextLevel && !gameState.unlockedLevels.includes(nextLevel)) {
+            unlockLevel(nextLevel);
+        }
+
+        // Show the level-complete section if user is viewing that level
+        // This applies to ALL completed levels, including Level 5 and Level 8 (final levels)
+        if (gameState.currentLevel === levelNum) {
+            const completeSection = document.getElementById(`level${levelNum}-complete`);
+            if (completeSection) {
+                completeSection.style.display = 'block';
+            }
+        }
+    });
+
+    // Show Season 2 navigation if unlocked
+    if (gameState.season2Unlocked) {
+        showSeason2Nav();
+    }
+}
+
+function unlockSeason2() {
+    if (gameState.season2Unlocked) return;
+
+    gameState.season2Unlocked = true;
+    saveGameState();
+    showSeason2Nav();
+
+    // Bonus XP for unlocking Season 2
+    showXPPopup('Season 2 Unlocked! +100 XP');
+    addXP(100);
+    addCoins(50);
+}
+
+function showSeason2Nav() {
+    // Show the Season 2 divider and level buttons
+    const divider = document.getElementById('season2-divider');
+    const nav6 = document.getElementById('nav-6');
+    const nav7 = document.getElementById('nav-7');
+    const nav8 = document.getElementById('nav-8');
+
+    if (divider) divider.style.display = 'flex';
+    if (nav6) nav6.style.display = 'flex';
+    if (nav7) nav7.style.display = 'flex';
+    if (nav8) nav8.style.display = 'flex';
+
+    // Show Season 2 badges in achievements panel
+    const badgeDivider = document.getElementById('s2-badge-divider');
+    if (badgeDivider) badgeDivider.style.display = 'block';
+
+    document.querySelectorAll('[data-badge="arcade"], [data-badge="space"], [data-badge="legendary"]').forEach(el => {
+        el.style.display = 'flex';
+    });
 }
 
 function initializeEventListeners() {
@@ -163,6 +237,23 @@ function initializeEventListeners() {
     document.getElementById('next-level-4')?.addEventListener('click', () => {
         unlockLevel('5');
         showLevel('5');
+    });
+
+    // Season 2 unlock button
+    document.getElementById('unlock-season2')?.addEventListener('click', () => {
+        unlockSeason2();
+        unlockLevel('6');
+        showLevel('6');
+    });
+
+    // Season 2 level buttons
+    document.getElementById('next-level-6')?.addEventListener('click', () => {
+        unlockLevel('7');
+        showLevel('7');
+    });
+    document.getElementById('next-level-7')?.addEventListener('click', () => {
+        unlockLevel('8');
+        showLevel('8');
     });
 
     // Save idea button
@@ -460,6 +551,29 @@ function checkAllLevelCompletions() {
     if (l5Complete && !gameState.completedLevels.includes('5')) {
         showLevelComplete(5);
     }
+
+    // === SEASON 2 LEVELS ===
+
+    // Level 6 - Code Arcade - need at least 3 of 6
+    const l6Challenges = ['l6-snake', 'l6-pong', 'l6-breakout', 'l6-whackamole', 'l6-memory', 'l6-typing'];
+    const l6Count = l6Challenges.filter(c => gameState.completedChallenges.includes(c)).length;
+    if (l6Count >= 3 && !gameState.completedLevels.includes('6')) {
+        showLevelComplete(6);
+    }
+
+    // Level 7 - Space Explorer - need at least 3 of 6
+    const l7Challenges = ['l7-asteroid', 'l7-planets', 'l7-rocket', 'l7-alien', 'l7-starmap', 'l7-spaceship'];
+    const l7Count = l7Challenges.filter(c => gameState.completedChallenges.includes(c)).length;
+    if (l7Count >= 3 && !gameState.completedLevels.includes('7')) {
+        showLevelComplete(7);
+    }
+
+    // Level 8 - Fantasy Quest - need at least 3 of 6 (or complete dragon for bonus)
+    const l8Challenges = ['l8-character', 'l8-battle', 'l8-inventory', 'l8-dungeon', 'l8-quest', 'l8-magic', 'l8-dragon'];
+    const l8Count = l8Challenges.filter(c => gameState.completedChallenges.includes(c)).length;
+    if (l8Count >= 3 && !gameState.completedLevels.includes('8')) {
+        showLevelComplete(8);
+    }
 }
 
 function showLevelComplete(levelNum) {
@@ -477,7 +591,10 @@ function showLevelComplete(levelNum) {
         2: 'ai',
         3: 'creator',
         4: 'webdev',
-        5: 'wizard'
+        5: 'wizard',
+        6: 'arcade',
+        7: 'space',
+        8: 'legendary'
     };
 
     if (badges[levelNum]) {
